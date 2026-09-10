@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "kind": "design_defaults_not_measured",
+  "max_actor_refinements": 2,
+  "max_tool_retries": 2,
+  "max_same_error_signature": 2,
+  "max_teacher_rounds": 1,
+  "global_budget_required": true,
+  "default_effort": "medium",
+  "retrieval": {
+    "max_candidates": 20,
+    "max_entries": 6,
+    "max_tokens": 2000
+  },
+  "verification_unknown_is_pass": false,
+  "learning_blocks_delivery": false,
+  "private_chain_of_thought_storage": false,
+  "receipts_from_runtime_only": true
+}

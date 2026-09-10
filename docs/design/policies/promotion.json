@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "kind": "proposed_thresholds_require_calibration",
+  "enabled": false,
+  "requires_independent_evaluator": true,
+  "requires_signed_receipt": true,
+  "requires_exact_subject_hash": true,
+  "requires_teacher_review": true,
+  "requires_scope_match": true,
+  "automatic_targets": [
+    "procedural_entry"
+  ],
+  "maintenance_review_targets": [
+    "core_skill",
+    "runtime",
+    "grader",
+    "policy",
+    "skill_resource"
+  ],
+  "minimum_independent_tasks": {
+    "promotion": 60,
+    "regression": 60,
+    "transfer_for_expanded_scope": 30
+  },
+  "quality_path": {
+    "paired_ci_lower_strictly_greater_than": 0
+  },
+  "efficiency_path": {
+    "paired_ci_lower_at_least": -0.02,
+    "max_cost_per_success_ratio": 0.8
+  },
+  "max_critical_regressions": 0,
+  "ordinary_regression_noninferiority_margin": 0.02,
+  "missing_or_unknown": "do_not_promote",
+  "canary_fraction": 0.1,
+  "rollback_requires_valid_release": true
+}

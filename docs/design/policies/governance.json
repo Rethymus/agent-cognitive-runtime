@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "active_profile": "consented",
+  "host_policy_precedence": true,
+  "profiles": {
+    "restricted": {
+      "sensitive_user_stated": "deny",
+      "inferred_personal_attributes": "deny",
+      "external_export": "deny"
+    },
+    "consented": {
+      "sensitive_user_stated": "requires_consent",
+      "inferred_personal_attributes": "deny",
+      "external_export": "requires_purpose_authorization"
+    },
+    "local_private": {
+      "sensitive_user_stated": "allow_when_explicitly_requested",
+      "inferred_personal_attributes": "deny",
+      "external_export": "deny_by_default"
+    }
+  },
+  "credentials": "secret_handle_only",
+  "retention_days": {
+    "user_review": 180,
+    "project_status": 7,
+    "project_decision_review": 90,
+    "episodic": 14,
+    "failure_review": 90,
+    "procedural_review": 90,
+    "evaluation_review": 180
+  },
+  "delete_derived_records": true,
+  "restore_requires_deletion_log": true,
+  "global_skill_personal_data": "deny"
+}

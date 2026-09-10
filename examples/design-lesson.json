@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "id": "lesson-demo-001",
+  "status": "candidate",
+  "scope": {
+    "tenant_id": "local",
+    "user_id": "owner",
+    "project_id": "demo-project",
+    "domain": "coding"
+  },
+  "base_hash": "d35bde0988e0660976c6c896da2c4878c8dfbd5bf504ad1b28fa117772d1972a",
+  "candidate_hash": "76cba96e6edb4993ac1ca850118a443e506c8b5ac59cc7c23e7d87f556a193f3",
+  "source_episode_refs": [
+    "fixture:episode-1"
+  ],
+  "asset": {
+    "problem_pattern": "并发事实更新",
+    "decision": "用版本前提进行写入",
+    "evidence_refs": [
+      "fixture:cas-conflict"
+    ],
+    "failure_mode": "陈旧补丁覆盖新状态",
+    "heuristic": "重读后合并非冲突字段",
+    "validation_result": "not_evaluated"
+  },
+  "preconditions": [
+    "服务支持 revision CAS"
+  ],
+  "counterexamples": [
+    "语义相互矛盾时不能自动合并"
+  ],
+  "change_target": "procedural_entry",
+  "expected_effect": "减少覆盖；需对照验证",
+  "proposed_tests": [
+    "stale_revision",
+    "semantic_conflict",
+    "unrelated_regression"
+  ],
+  "eval_receipt_refs": [],
+  "review_ref": null,
+  "release_ref": null
+}

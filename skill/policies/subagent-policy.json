@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "revision": "2026-09-09.2",
+  "description": "用户指定的分工及推理强度。角色稳定、模型绑定可替换；默认少量有边界的主代理-子代理结构。",
+  "economy_allowed_efforts": [
+    "xhigh",
+    "max"
+  ],
+  "strong_daily_allowed_efforts": [
+    "medium",
+    "high"
+  ],
+  "strong_hard_allowed_efforts": [
+    "xhigh",
+    "max"
+  ],
+  "default_role": "acr_worker",
+  "escalation_order": [
+    "acr_worker",
+    "acr_worker_max",
+    "acr_developer",
+    "acr_reviewer",
+    "acr_decision",
+    "acr_architect",
+    "acr_solver",
+    "acr_solver_max"
+  ],
+  "limits": {
+    "max_concurrent_children": 3,
+    "max_children_per_task": 4,
+    "max_delegation_depth": 1,
+    "max_repairs_per_subtask": 2,
+    "max_supervisor_rounds": 1,
+    "max_handoff_chars": 16000,
+    "max_result_chars": 8000
+  },
+  "rules": [
+    {
+      "id": "tool-first",
+      "why": "确定性工具足够时直接调用工具，避免为重复动作增加推理和交接成本。"
+    },
+    {
+      "id": "bounded-worker",
+      "why": "只有输入、范围、产物和验收清楚的低风险可验证任务进入经济型执行代理。"
+    },
+    {
+      "id": "worker-floor",
+      "why": "按用户偏好，经济型代理始终使用 xhigh/max，不因任务简单或后台运行自动降档。"
+    },
+    {
+      "id": "strong-decisions",
+      "why": "架构、歧义、重要决策、不可验证结果由强模型承担；提高小模型 effort 不视为模型能力升级。"
+    },
+    {
+      "id": "evidence-escalation",
+      "why": "失败升级需要具体证据；max 需要例外难度和升级理由，防止默认满档。"
+    },
+    {
+      "id": "ownership",
+      "why": "同一文件或外部资源保持单一写入者；汇总者负责整体验收。"
+    },
+    {
+      "id": "no-cascade",
+      "why": "子代理不再派生下级，避免协调开销、预算与权限不透明。"
+    }
+  ],
+  "roles": {
+    "acr_worker": {
+      "binding": "economy",
+      "effort": "xhigh",
+      "band": "economy",
+      "capability": "bounded_execution",
+      "description": "明确、可验证、重复性执行；可用于后台子任务",
+      "instructions": "按交接合约执行；不自行改变目标、架构、验收、权限或策略。发现歧义、输入缺失或连续失败，返回明确证据给主代理。"
+    },
+    "acr_worker_max": {
+      "binding": "economy",
+      "effort": "max",
+      "band": "economy",
+      "capability": "bounded_execution",
+      "description": "边界仍然清楚、已有失败证据的执行子任务",
+      "instructions": "仅处理已定位的执行困难。一次修正后仍不通过就回传失败证据，不把同一策略无限重试。"
+    },
+    "acr_developer": {
+      "binding": "reasoner",
+      "effort": "medium",
+      "band": "daily",
+      "capability": "decision",
+      "description": "日常开发、局部设计与明确的实现决策",
+      "instructions": "完成有界开发任务；解释关键决定并提供实际验收证据。超出约定的架构变更交回主代理。"
+    },
+    "acr_reviewer": {
+      "binding": "reasoner",
+      "effort": "high",
+      "band": "daily",
+      "capability": "review",
+      "description": "复杂逻辑、失败诊断和产物审查",
+      "instructions": "优先审查可观察缺陷、反例、证据与验收缺口；默认只读，不替代执行者写代码，也不把自信当验证。"
+    },
+    "acr_architect": {
+      "binding": "frontier",
+      "effort": "high",
+      "band": "daily",
+      "capability": "architecture",
+      "description": "架构、边界不明和高后果决策",
+      "instructions": "把问题拆成可验证决策，说明约束、权衡、选定方案及后续可执行合约。默认只读；不代替用户扩大范围或授权。"
+    },
+    "acr_solver": {
+      "binding": "frontier",
+      "effort": "xhigh",
+      "band": "hard",
+      "capability": "hard_problem",
+      "description": "有明确证据的难题攻坚或两次无效修正后的诊断",
+      "instructions": "检查现有假设与失败证据，寻找可运行的反例或验证方案。保留不确定性，不以更多同类推理替代新证据。"
+    },
+    "acr_solver_max": {
+      "binding": "frontier",
+      "effort": "max",
+      "band": "hard",
+      "capability": "hard_problem",
+      "description": "有明确升级理由的例外难题",
+      "instructions": "针对升级理由开展有界攻坚，报告可审计结论、证据与剩余未知。达到预算或缺少关键信息时返回部分成果和缺口。"
+    },
+    "acr_decision": {
+      "binding": "reasoner",
+      "effort": "high",
+      "band": "daily",
+      "capability": "decision",
+      "description": "经济型主代理请求的有界复杂决策；只给决策合约，执行交回原代理",
+      "instructions": "只回答待决问题，输出 decision_packet_v1：决定、适用范围、依据与反例、可执行步骤、逐项验收和未知。不要接管全部执行或派生其他代理；原任务的高风险与未知不能凭本次回答自动消除。"
+    }
+  }
+}

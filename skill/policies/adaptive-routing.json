@@ -1,0 +1,32 @@
+{
+  "schema_version":"1.0",
+  "revision":"2026-09-09.1",
+  "status":"rule_based_cold_start_not_calibrated",
+  "description":"任务难度为多维证据画像，不是模型自评分。风险与推理难度分开；所有数字是可调整的初始预算，不是论文证明的最优值。",
+  "budgets":{"max_total_calls":4,"max_strong_calls":2,"max_frontier_calls":1,"max_max_effort_calls":1,"max_concurrent_calls":3},
+  "feature_values":{
+    "ambiguity":["clear","unknown","conflicting"],
+    "dependency":["local","unknown","coupled"],
+    "constraints":["single","unknown","interacting"],
+    "novelty":["known","unknown","new"],
+    "verification":["deterministic","partial","unknown"],
+    "reversibility":["reversible","unknown","irreversible"],
+    "risk":["low","medium","high"],
+    "phase":["decision","execution"],
+    "failure_type":["none","environment","execution","reasoning"]
+  },
+  "feature_guidance":{
+    "ambiguity":"能否用明确产物和验收表达需求？给原始消息/验收引用。",
+    "dependency":"是否只影响一个有界单元，是否需要追踪跨组件契约？不能用文件数代替。",
+    "constraints":"约束是否相互作用，例如兼容性、性能和一致性冲突？",
+    "novelty":"本任务族是否有相关已验证做法？未知先查证，不直接上前沿模型。",
+    "verification":"确定性验收是否覆盖本次全部承诺？语法通过不能等同业务正确。",
+    "reversibility":"失败能否局部撤回，是否涉及不可逆外部副作用？",
+    "risk":"错误后果，不是难度分。高风险排除未经审查的经济型执行。"
+  },
+  "roles":{"worker":"acr_worker","repair":"acr_worker_max","decision":"acr_decision","frontier":"acr_solver","exceptional":"acr_solver_max"},
+  "verification_contract":["scope_and_diff","acceptance_outcomes","evidence_freshness","declared_side_effects","remaining_unknowns"],
+  "token_accounting":"unknown_until_host_receipt_available",
+  "calibration":{"enabled":false,"method":"paired_task_family_evals","minimum_examples_for_initial_review":30,"promotion":"explicit_review_required"},
+  "fail_closed":"预算不足或证据不足时返回待处理项；不静默降级难题、不伪造成功。"
+}

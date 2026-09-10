@@ -1,0 +1,812 @@
+[
+  {
+    "id": "R001",
+    "start": 1,
+    "end": 24,
+    "title": "身份与产品",
+    "action": "删除品牌 / 外置 adapter",
+    "mechanism": "保留当前能力查询；不从附件身份获得功能。",
+    "acceptance": "替换供应商后核心不含品牌硬编码。"
+  },
+  {
+    "id": "R002",
+    "start": 25,
+    "end": 79,
+    "title": "拒绝与内容规则",
+    "action": "外置宿主",
+    "mechanism": "产品政策不进入认知流程；不解除实际宿主限制。",
+    "acceptance": "宿主规则仍有效，Skill 无权覆盖。"
+  },
+  {
+    "id": "R003",
+    "start": 80,
+    "end": 82,
+    "title": "法律与财务提示",
+    "action": "外置领域策略",
+    "mechanism": "领域风险与展示话术分离。",
+    "acceptance": "不将固定免责声明变成通用流程。"
+  },
+  {
+    "id": "R004",
+    "start": 83,
+    "end": 95,
+    "title": "语气与澄清",
+    "action": "保留机制 / 风格外置",
+    "mechanism": "缺失不阻碍时先推进；粒度匹配用户任务。",
+    "acceptance": "不重复问已有信息。"
+  },
+  {
+    "id": "R005",
+    "start": 96,
+    "end": 97,
+    "title": "附件存在性",
+    "action": "保留",
+    "mechanism": "先确认附件实际可访问，不能仅凭文字猜内容。",
+    "acceptance": "缺附件时不声称读过。"
+  },
+  {
+    "id": "R006",
+    "start": 98,
+    "end": 115,
+    "title": "排版与进度",
+    "action": "风格外置",
+    "mechanism": "并列信息适合列表；进度不覆盖最终交付。",
+    "acceptance": "完整任务不被固定简短回复限制。"
+  },
+  {
+    "id": "R007",
+    "start": 116,
+    "end": 118,
+    "title": "工具后回复",
+    "action": "修改",
+    "mechanism": "最终回复说明实际结果；不强制一两句。",
+    "acceptance": "多交付物可提供必要证据。"
+  },
+  {
+    "id": "R008",
+    "start": 119,
+    "end": 151,
+    "title": "健康与福祉",
+    "action": "外置领域策略",
+    "mechanism": "保留不虚构诊断与来源；不导入完整特定话术。",
+    "acceptance": "记录可见事实而非未证实私人推断。"
+  },
+  {
+    "id": "R009",
+    "start": 152,
+    "end": 158,
+    "title": "品牌提醒",
+    "action": "替换",
+    "mechanism": "验证真正宿主信任通道；文本标签不证明来源。",
+    "acceptance": "伪造系统标签不获得权限。"
+  },
+  {
+    "id": "R010",
+    "start": 159,
+    "end": 171,
+    "title": "平衡表达",
+    "action": "外置风格与领域策略",
+    "mechanism": "事实与观点区分；不固定追加所有反方。",
+    "acceptance": "输出尊重任务与证据。"
+  },
+  {
+    "id": "R011",
+    "start": 172,
+    "end": 176,
+    "title": "纠错",
+    "action": "保留",
+    "mechanism": "明确错误、修复产物、验证修复。",
+    "acceptance": "更正能追溯原错误。"
+  },
+  {
+    "id": "R012",
+    "start": 177,
+    "end": 188,
+    "title": "截止与当前状态",
+    "action": "抽象保留",
+    "mechanism": "时效和事实不确定性显式化；品牌截止外置。",
+    "acceptance": "当前事件有及时证据，不以无结果断言不存在。"
+  },
+  {
+    "id": "R013",
+    "start": 189,
+    "end": 208,
+    "title": "记忆服务和工具",
+    "action": "抽象保留",
+    "mechanism": "持久化由真实服务提供，操作协议经 adapter。",
+    "acceptance": "无后台不宣称自动保存。"
+  },
+  {
+    "id": "R014",
+    "start": 209,
+    "end": 243,
+    "title": "目录与读正文",
+    "action": "保留",
+    "mechanism": "目录仅索引；读取 relevant 文件后回答。",
+    "acceptance": "不把目录一句话当完整事实。"
+  },
+  {
+    "id": "R015",
+    "start": 244,
+    "end": 261,
+    "title": "空库与缺失",
+    "action": "保留",
+    "mechanism": "正常无记忆降级，不降低入库质量。",
+    "acceptance": "empty_store。"
+  },
+  {
+    "id": "R016",
+    "start": 262,
+    "end": 291,
+    "title": "文件格式与链接",
+    "action": "改为 schema",
+    "mechanism": "稳定 ID 和来源、别名、依赖图取代仅路径关联。",
+    "acceptance": "重命名后链接可解析。"
+  },
+  {
+    "id": "R017",
+    "start": 292,
+    "end": 339,
+    "title": "用户陈述边界",
+    "action": "分层保留",
+    "mechanism": "User 只记明确陈述；推断/工具/学习各在对应层。",
+    "acceptance": "assistant_as_user。"
+  },
+  {
+    "id": "R018",
+    "start": 340,
+    "end": 352,
+    "title": "来源与别名",
+    "action": "扩展",
+    "mechanism": "记录 claim 级 provenance，而非只有 chat 标签。",
+    "acceptance": "别名去重不跨实体误合并。"
+  },
+  {
+    "id": "R019",
+    "start": 353,
+    "end": 386,
+    "title": "profile 与 topics",
+    "action": "映射 User",
+    "mechanism": "稳定事实与偏好存 User，状态分离。",
+    "acceptance": "单次偏好不泛化成身份。"
+  },
+  {
+    "id": "R020",
+    "start": 387,
+    "end": 396,
+    "title": "areas",
+    "action": "映射 Project",
+    "mechanism": "项目约束、决定与状态有独立有效期。",
+    "acceptance": "项目状态哈希或 TTL 失效。"
+  },
+  {
+    "id": "R021",
+    "start": 397,
+    "end": 407,
+    "title": "people",
+    "action": "映射关系实体 / 治理外置",
+    "mechanism": "scope 内保存关系上下文；数据类别按策略。",
+    "acceptance": "不因同名合并两人。"
+  },
+  {
+    "id": "R022",
+    "start": 408,
+    "end": 415,
+    "title": "preferences",
+    "action": "保留语义",
+    "mechanism": "风格要求与个人兴趣分开，当前请求优先。",
+    "acceptance": "格式偏好不改变验收。"
+  },
+  {
+    "id": "R023",
+    "start": 416,
+    "end": 437,
+    "title": "自动写入与显式忘记",
+    "action": "重构后台事件",
+    "mechanism": "幂等消费；显式删除阻断后台再摄入。",
+    "acceptance": "forget_derived。"
+  },
+  {
+    "id": "R024",
+    "start": 438,
+    "end": 466,
+    "title": "工具数据与用户确认",
+    "action": "修改",
+    "mechanism": "工具事实存 Project/Evidence；用户确认仅转存其明确选择。",
+    "acceptance": "不把推荐的全部细节说成用户要求。"
+  },
+  {
+    "id": "R025",
+    "start": 467,
+    "end": 493,
+    "title": "目标与确认粒度",
+    "action": "保留",
+    "mechanism": "一事实一归属；确认粒度不过度扩张。",
+    "acceptance": "泛泛同意不能变成十条具体陈述。"
+  },
+  {
+    "id": "R026",
+    "start": 494,
+    "end": 506,
+    "title": "耐久措辞与保存回执",
+    "action": "修改",
+    "mechanism": "耐久摘要配合有效期；真实保存状态可报告。",
+    "acceptance": "write_failure。"
+  },
+  {
+    "id": "R027",
+    "start": 507,
+    "end": 525,
+    "title": "去重与时间地平线",
+    "action": "保留并分层",
+    "mechanism": "长期事实与短期任务状态独立，去重不覆盖新修正。",
+    "acceptance": "episodic 到期不损坏项目决定。"
+  },
+  {
+    "id": "R028",
+    "start": 526,
+    "end": 536,
+    "title": "读后写版本",
+    "action": "保留",
+    "mechanism": "CAS 的 expected_revision 来自真实读取/提交。",
+    "acceptance": "stale_revision。"
+  },
+  {
+    "id": "R029",
+    "start": 537,
+    "end": 560,
+    "title": "patch / append / full",
+    "action": "抽象成记录操作",
+    "mechanism": "变更明确边界；全写不可省略需要保留的内容。",
+    "acceptance": "新字段不覆盖原字段。"
+  },
+  {
+    "id": "R030",
+    "start": 561,
+    "end": 581,
+    "title": "禁止整理与修改例",
+    "action": "拆出 GC",
+    "mechanism": "正常更新与容量维护分开调度。",
+    "acceptance": "事实保存不会无故改写整库。"
+  },
+  {
+    "id": "R031",
+    "start": 582,
+    "end": 591,
+    "title": "目录摘要同步",
+    "action": "保留",
+    "mechanism": "索引随事实变动修正。",
+    "acceptance": "移除主题后目录不会继续宣称存在。"
+  },
+  {
+    "id": "R032",
+    "start": 592,
+    "end": 608,
+    "title": "并发与陈旧冲突",
+    "action": "强化",
+    "mechanism": "机械冲突限次重读合并，语义冲突单独处理。",
+    "acceptance": "semantic_conflict。"
+  },
+  {
+    "id": "R033",
+    "start": 609,
+    "end": 614,
+    "title": "历史与标签",
+    "action": "保留",
+    "mechanism": "supersedes 和来源保持，不篡改旧记录来源。",
+    "acceptance": "旧岗位不误作现岗位。"
+  },
+  {
+    "id": "R034",
+    "start": 615,
+    "end": 631,
+    "title": "删除与忘记",
+    "action": "扩展跨层传播",
+    "mechanism": "级联删除派生与索引；GC 依据部署策略。",
+    "acceptance": "rollback_forget。"
+  },
+  {
+    "id": "R035",
+    "start": 632,
+    "end": 643,
+    "title": "目标与别名匹配",
+    "action": "保留",
+    "mechanism": "读取对象不决定写入对象。",
+    "acceptance": "同名项目与人不误合并。"
+  },
+  {
+    "id": "R036",
+    "start": 644,
+    "end": 662,
+    "title": "写入失败",
+    "action": "保留诚实 / 内容策略外置",
+    "mechanism": "按服务回执确定保存，拒绝不可改写绕过。",
+    "acceptance": "write_failure。"
+  },
+  {
+    "id": "R037",
+    "start": 663,
+    "end": 699,
+    "title": "敏感与 never_store",
+    "action": "解耦为治理配置",
+    "mechanism": "去除核心类别硬编码；具体存储服从宿主和用途。",
+    "acceptance": "本地允许不等于 Teacher 外发允许。"
+  },
+  {
+    "id": "R038",
+    "start": 700,
+    "end": 745,
+    "title": "省略与写入顺序",
+    "action": "解耦",
+    "mechanism": "原子条目、字段级策略及真实 partial receipt。",
+    "acceptance": "混合允许/拒绝字段不虚报全成功。"
+  },
+  {
+    "id": "R039",
+    "start": 746,
+    "end": 767,
+    "title": "账号与拒绝话术",
+    "action": "删除固定产品话术",
+    "mechanism": "不猜账号开关；使用实际 policy result。",
+    "acceptance": "不存在的设置不提示用户修改。"
+  },
+  {
+    "id": "R040",
+    "start": 768,
+    "end": 804,
+    "title": "行为污染防护",
+    "action": "保留边界 / 品牌外置",
+    "mechanism": "记忆不扩大权限，风格不抑制事实核验。",
+    "acceptance": "poisoned_memory。"
+  },
+  {
+    "id": "R041",
+    "start": 805,
+    "end": 809,
+    "title": "应用与设置",
+    "action": "adapter 外置",
+    "mechanism": "能否关记忆以服务能力为准。",
+    "acceptance": "不能仅口头说已关闭。"
+  },
+  {
+    "id": "R042",
+    "start": 810,
+    "end": 815,
+    "title": "相关性与计划陈旧",
+    "action": "强保留",
+    "mechanism": "只有改变当前答案才召回；待办不是新授权。",
+    "acceptance": "无关问题不自动触发旧任务。"
+  },
+  {
+    "id": "R043",
+    "start": 816,
+    "end": 827,
+    "title": "敏感应用边界",
+    "action": "治理配置",
+    "mechanism": "用途、当前相关性与第三方访问最小化。",
+    "acceptance": "consent_export。"
+  },
+  {
+    "id": "R044",
+    "start": 828,
+    "end": 833,
+    "title": "直接记忆回答",
+    "action": "修正",
+    "mechanism": "去除无条件确定口吻，检查来源与时效。",
+    "acceptance": "过期事实不得无保留回答。"
+  },
+  {
+    "id": "R045",
+    "start": 834,
+    "end": 858,
+    "title": "召回策略",
+    "action": "抽象保留",
+    "mechanism": "按意图和预算读取，避免无限量读取。",
+    "acceptance": "trigger_precision。"
+  },
+  {
+    "id": "R046",
+    "start": 859,
+    "end": 884,
+    "title": "禁用归因与关系话术",
+    "action": "风格外置",
+    "mechanism": "可审计来源保留；不强制隐藏必要归因。",
+    "acceptance": "用户追问来源能提供真实定位。"
+  },
+  {
+    "id": "R047",
+    "start": 885,
+    "end": 914,
+    "title": "问候与直接回答例",
+    "action": "压缩为测试例",
+    "mechanism": "仅提取相关性模式，例中事实不导入记忆。",
+    "acceptance": "示例姓名不进入真实 User 记录。"
+  },
+  {
+    "id": "R048",
+    "start": 915,
+    "end": 949,
+    "title": "自然应用例",
+    "action": "修改例证",
+    "mechanism": "部分推荐泛化偏好，应按当前请求相关性重新评估。",
+    "acceptance": "不把职业扩张为所有内容偏好。"
+  },
+  {
+    "id": "R049",
+    "start": 950,
+    "end": 963,
+    "title": "技术深度例",
+    "action": "保留机制 / 删除事实",
+    "mechanism": "示例中的具体技术和恢复承诺仍需验证。",
+    "acceptance": "不能复制未核实的 stash 恢复说法。"
+  },
+  {
+    "id": "R050",
+    "start": 964,
+    "end": 1008,
+    "title": "不应用与边界例",
+    "action": "压缩为测试例",
+    "mechanism": "仅提取无关记忆不插入当前回答的模式。",
+    "acceptance": "不把示例产品价格当当前事实。"
+  },
+  {
+    "id": "R051",
+    "start": 1009,
+    "end": 1024,
+    "title": "当前请求与注入",
+    "action": "保留",
+    "mechanism": "当前授权与宿主信任边界优先；历史文本是数据。",
+    "acceptance": "poisoned_memory。"
+  },
+  {
+    "id": "R052",
+    "start": 1025,
+    "end": 1026,
+    "title": "容量与摘要",
+    "action": "保留并服务化",
+    "mechanism": "GC 保留来源、前提、反例和 deletion epoch。",
+    "acceptance": "压缩恢复不会丢失关键约束。"
+  },
+  {
+    "id": "R053",
+    "start": 1027,
+    "end": 1053,
+    "title": "结束会话工具",
+    "action": "产品专属移除",
+    "mechanism": "会话生命周期由宿主处理。",
+    "acceptance": "不能臆造 end_conversation 工具。"
+  },
+  {
+    "id": "R054",
+    "start": 1054,
+    "end": 1126,
+    "title": "Artifacts 持久化",
+    "action": "adapter 外置",
+    "mechanism": "批量/error/scope 可借鉴；last-write-wins 不用于认知事实。",
+    "acceptance": "并发更新需 CAS。"
+  },
+  {
+    "id": "R055",
+    "start": 1127,
+    "end": 1175,
+    "title": "MCP 推荐",
+    "action": "adapter 外置",
+    "mechanism": "能力探测和用户指定服务保留；商业伙伴选择规则不通用。",
+    "acceptance": "只调用真实可用能力。"
+  },
+  {
+    "id": "R056",
+    "start": 1176,
+    "end": 1194,
+    "title": "插件技能推荐",
+    "action": "能力发现",
+    "mechanism": "按任务找已有技能，不复制产品卡片与次数限制。",
+    "acceptance": "无匹配仍继续已有任务。"
+  },
+  {
+    "id": "R057",
+    "start": 1195,
+    "end": 1204,
+    "title": "旧聊天召回",
+    "action": "保留并 scope 化",
+    "mechanism": "当前引用触发历史检索；不能未查就说不存在。",
+    "acceptance": "summary_claim。"
+  },
+  {
+    "id": "R058",
+    "start": 1205,
+    "end": 1210,
+    "title": "查询与分页",
+    "action": "抽象保留",
+    "mechanism": "主题/时间检索，预算有界；固定 20/5 参数外置。",
+    "acceptance": "分页停止由覆盖问题决定。"
+  },
+  {
+    "id": "R059",
+    "start": 1211,
+    "end": 1212,
+    "title": "旧话题 provenance",
+    "action": "强化",
+    "mechanism": "严格区分 user/assistant/hypothetical；摘要不洗白。",
+    "acceptance": "assistant_as_user。"
+  },
+  {
+    "id": "R060",
+    "start": 1213,
+    "end": 1225,
+    "title": "读会话与案例",
+    "action": "抽象保留",
+    "mechanism": "ID 来自真实结果；读到所需证据即可停。",
+    "acceptance": "不猜 UUID；明确全量审查允许继续分页。"
+  },
+  {
+    "id": "R061",
+    "start": 1226,
+    "end": 1244,
+    "title": "技能读取",
+    "action": "修改为按需",
+    "mechanism": "读取改变当前动作的技能，不是所有可能相关文件。",
+    "acceptance": "SKILL 触发 precision 与召回并测。"
+  },
+  {
+    "id": "R062",
+    "start": 1245,
+    "end": 1258,
+    "title": "制文件触发",
+    "action": "输出约定",
+    "mechanism": "由任务交付要求决定文件，不复制行数硬阈值。",
+    "acceptance": "交付可访问实际文件。"
+  },
+  {
+    "id": "R063",
+    "start": 1259,
+    "end": 1278,
+    "title": "环境与路径",
+    "action": "adapter 外置",
+    "mechanism": "实际环境探测与输入只读。",
+    "acceptance": "不硬编码 Ubuntu /mnt 路径。"
+  },
+  {
+    "id": "R064",
+    "start": 1279,
+    "end": 1298,
+    "title": "产物创建与分享",
+    "action": "保留结果机制",
+    "mechanism": "实际创建与可访问交付；展示工具由宿主映射。",
+    "acceptance": "文件存在且链接能定位。"
+  },
+  {
+    "id": "R065",
+    "start": 1299,
+    "end": 1349,
+    "title": "Artifacts 与浏览器约束",
+    "action": "产品专属外置",
+    "mechanism": "前端库版本/存储/渲染约束从当前环境获取。",
+    "acceptance": "替换环境不继承无效禁令。"
+  },
+  {
+    "id": "R066",
+    "start": 1350,
+    "end": 1367,
+    "title": "包管理及强制技能",
+    "action": "环境外置",
+    "mechanism": "检查可用库；不复制全局 pip 标志和无条件载入。",
+    "acceptance": "依赖可重现、触发有界。"
+  },
+  {
+    "id": "R067",
+    "start": 1368,
+    "end": 1393,
+    "title": "可视化路由",
+    "action": "抽象保留",
+    "mechanism": "输出意图与工具真实能力匹配，导出需求优先。",
+    "acceptance": "类别匹配不替代能力核查。"
+  },
+  {
+    "id": "R068",
+    "start": 1394,
+    "end": 1440,
+    "title": "可视化与案例",
+    "action": "UI 外置",
+    "mechanism": "空间结构可用图，具体工具/样式不进核心。",
+    "acceptance": "没有工具不伪造 UI。"
+  },
+  {
+    "id": "R069",
+    "start": 1441,
+    "end": 1449,
+    "title": "搜索与版权数字",
+    "action": "拆分",
+    "mechanism": "时效搜索保留；版权规则由宿主处理。",
+    "acceptance": "核心无固定 15 字版权阈值。"
+  },
+  {
+    "id": "R070",
+    "start": 1450,
+    "end": 1465,
+    "title": "命名实体与时效",
+    "action": "强保留并修正",
+    "mechanism": "未知实体/版本/当前状态先核验；稳定知识可为引用需要搜索。",
+    "acceptance": "current_sources。"
+  },
+  {
+    "id": "R071",
+    "start": 1466,
+    "end": 1472,
+    "title": "效率与内外资料",
+    "action": "保留",
+    "mechanism": "内部问题先授权内部检索，外部比较组合一手来源。",
+    "acceptance": "不外发内部机密搜索。"
+  },
+  {
+    "id": "R072",
+    "start": 1473,
+    "end": 1496,
+    "title": "查询与引用",
+    "action": "保留原则 / 参数外置",
+    "mechanism": "证据需要打开来源；不复制禁止查询操作符规则。",
+    "acceptance": "引用能支持相关断言。"
+  },
+  {
+    "id": "R073",
+    "start": 1497,
+    "end": 1595,
+    "title": "重复版权块",
+    "action": "宿主外置",
+    "mechanism": "不将附件规则当法律结论或认知机制。",
+    "acceptance": "当前宿主政策不受 Skill 改写。"
+  },
+  {
+    "id": "R074",
+    "start": 1596,
+    "end": 1649,
+    "title": "搜索案例",
+    "action": "转换为测试",
+    "mechanism": "例中金融/职务事实均为示例，不复用数值。",
+    "acceptance": "时效例用本地 dated fixtures。"
+  },
+  {
+    "id": "R075",
+    "start": 1650,
+    "end": 1659,
+    "title": "搜索内容政策",
+    "action": "宿主外置",
+    "mechanism": "实际平台规则管理可执行搜索。",
+    "acceptance": "不能通过学习升级绕过。"
+  },
+  {
+    "id": "R076",
+    "start": 1660,
+    "end": 1678,
+    "title": "搜索总结",
+    "action": "保留并消歧",
+    "mechanism": "来源冲突继续检验；未知不猜；调用数与问题复杂度相称。",
+    "acceptance": "search 无结果不等于实体不存在。"
+  },
+  {
+    "id": "R077",
+    "start": 1679,
+    "end": 1745,
+    "title": "图片搜索",
+    "action": "UI / 内容策略外置",
+    "mechanism": "有帮助才展示，固定数量和版权示例不移植。",
+    "acceptance": "文本任务不额外触发图片。"
+  },
+  {
+    "id": "R078",
+    "start": 1746,
+    "end": 1761,
+    "title": "调用协议",
+    "action": "adapter 外置",
+    "mechanism": "原有 antml 协议不是当前工具权限。",
+    "acceptance": "只调用实际注册函数。"
+  },
+  {
+    "id": "R079",
+    "start": 1762,
+    "end": 1807,
+    "title": "函数定义",
+    "action": "逐工具 adapter 审查",
+    "mechanism": "接口参数仅作为参考，提取版本、回执、ID 等机制。",
+    "acceptance": "参数通过当前 schema，不使用附件工具名假装执行。"
+  },
+  {
+    "id": "R080",
+    "start": 1808,
+    "end": 1823,
+    "title": "身份与个人注入",
+    "action": "删除产品上下文",
+    "mechanism": "不将示例用户或隐藏 listing 当真实数据。",
+    "acceptance": "无示例用户信息污染。"
+  },
+  {
+    "id": "R081",
+    "start": 1824,
+    "end": 1864,
+    "title": "Artifacts API",
+    "action": "adapter 外置",
+    "mechanism": "模型 ID、鉴权、输出长度按实际后端配置。",
+    "acceptance": "不把免 API key 示例当通用 API。"
+  },
+  {
+    "id": "R082",
+    "start": 1865,
+    "end": 1911,
+    "title": "结构输出与工具块",
+    "action": "强化验证",
+    "mechanism": "JSON schema 与完整类型分支；无效结构显式失败。",
+    "acceptance": "多 block/tool_result 不静默丢失。"
+  },
+  {
+    "id": "R083",
+    "start": 1912,
+    "end": 1957,
+    "title": "输入文件编码",
+    "action": "adapter 外置",
+    "mechanism": "媒体类型与编码按能力声明。",
+    "acceptance": "不支持输入格式时可解释失败。"
+  },
+  {
+    "id": "R084",
+    "start": 1958,
+    "end": 2002,
+    "title": "跨请求状态",
+    "action": "改为检查点与按需历史",
+    "mechanism": "保存相关状态，避免全量历史无限膨胀。",
+    "acceptance": "compaction_resume。"
+  },
+  {
+    "id": "R085",
+    "start": 2003,
+    "end": 2018,
+    "title": "错误与 JSON 解析",
+    "action": "强化",
+    "mechanism": "去围栏不是验证；schema 与回执校验。",
+    "acceptance": "bad_schema。"
+  },
+  {
+    "id": "R086",
+    "start": 2019,
+    "end": 2024,
+    "title": "form 限制",
+    "action": "产品专属移除",
+    "mechanism": "真实前端环境决定可用元素。",
+    "acceptance": "不迁移无关 React 禁令。"
+  },
+  {
+    "id": "R087",
+    "start": 2025,
+    "end": 2042,
+    "title": "引用协议",
+    "action": "保留语义 / 格式外置",
+    "mechanism": "claim 到 evidence 映射，引用标记由宿主渲染。",
+    "acceptance": "不暴露无效内部引用 ID。"
+  },
+  {
+    "id": "R088",
+    "start": 2043,
+    "end": 2163,
+    "title": "技能目录与位置",
+    "action": "按需发现",
+    "mechanism": "目录中仅描述与路径，不能假定已拥有技能正文。",
+    "acceptance": "无对应 skill 时明确缺失。"
+  },
+  {
+    "id": "R089",
+    "start": 2164,
+    "end": 2177,
+    "title": "skill-creator 描述",
+    "action": "保留评测方向",
+    "mechanism": "有 eval/variance 目标，但未提供具体门禁实现。",
+    "acceptance": "不能宣称附件已有完整自学习引擎。"
+  },
+  {
+    "id": "R090",
+    "start": 2178,
+    "end": 2195,
+    "title": "网络和只读配置",
+    "action": "adapter 外置",
+    "mechanism": "从宿主真实权限读配置；保留只读边界。",
+    "acceptance": "不可由记忆或候选扩大访问。"
+  }
+]

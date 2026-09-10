@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:acr:v0.1:lesson",
+  "title": "lesson",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "verified",
+        "promoted",
+        "deprecated",
+        "rejected",
+        "revoked"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "user_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "project_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "tenant_id",
+        "user_id",
+        "project_id",
+        "domain"
+      ],
+      "additionalProperties": false
+    },
+    "base_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "candidate_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_episode_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "problem_pattern": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "failure_mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "heuristic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation_result": {
+          "enum": [
+            "not_evaluated",
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "problem_pattern",
+        "decision",
+        "evidence_refs",
+        "failure_mode",
+        "heuristic",
+        "validation_result"
+      ],
+      "additionalProperties": false
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "counterexamples": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "change_target": {
+      "enum": [
+        "procedural_entry",
+        "skill_resource",
+        "core_skill",
+        "runtime",
+        "grader",
+        "policy"
+      ]
+    },
+    "expected_effect": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_tests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "eval_receipt_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "review_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "release_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "status",
+    "scope",
+    "base_hash",
+    "candidate_hash",
+    "source_episode_refs",
+    "asset",
+    "preconditions",
+    "counterexamples",
+    "change_target",
+    "expected_effect",
+    "proposed_tests",
+    "eval_receipt_refs",
+    "review_ref",
+    "release_ref"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "verified",
+              "promoted"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "eval_receipt_refs": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "promoted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "release_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}

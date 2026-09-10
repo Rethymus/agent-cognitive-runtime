@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "status": "design_not_run",
+  "variants": [
+    "V0_Luna_base",
+    "V1_Luna_skill",
+    "V2_V1_memory",
+    "V3_V1_verify",
+    "V4_V1_memory_verify",
+    "V5_V4_Sol_critique",
+    "V6_V4_Terra_review",
+    "V7_Sol_base",
+    "V8_Sol_same_harness"
+  ],
+  "pilot": {
+    "tasks_per_family": 5,
+    "repeats": 2
+  },
+  "formal_proposed": {
+    "families": 6,
+    "tasks_or_streams_per_family": 40,
+    "repeats": 3
+  },
+  "fairness": [
+    "same_inputs",
+    "same_required_tools",
+    "same_authorization",
+    "same_grader",
+    "independent_memory_per_variant"
+  ],
+  "splits": [
+    "development",
+    "promotion",
+    "locked_audit"
+  ],
+  "stream_protocol": "predict_then_evaluate_then_update",
+  "cluster_unit": "independent_task_or_stream",
+  "primary": {
+    "noninferiority_margin": 0.05,
+    "cost_per_success_ratio_target": 0.3
+  },
+  "confidence_interval": "paired_cluster_bootstrap_95_percent",
+  "guardrails": [
+    "critical_regression_zero",
+    "no_gold_in_actor_context",
+    "no_private_chain_of_thought",
+    "all_attempt_costs_in_denominator"
+  ],
+  "results": null
+}

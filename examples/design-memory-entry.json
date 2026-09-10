@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1",
+  "id": "memory-demo-001",
+  "revision": 1,
+  "type": "failure",
+  "scope": {
+    "tenant_id": "local",
+    "user_id": "owner",
+    "project_id": "demo-project",
+    "domain": "coding"
+  },
+  "status": "candidate",
+  "claim": "演示：版本变化后原补丁未重新读取，发生冲突；根因尚未验证。",
+  "source_kind": "execution_failure",
+  "provenance": [
+    {
+      "source_ref": "fixture:cas-conflict",
+      "locator": "event:2",
+      "speaker": "tool",
+      "captured_at": "2026-09-09T00:00:00Z",
+      "content_hash": "d35bde0988e0660976c6c896da2c4878c8dfbd5bf504ad1b28fa117772d1972a"
+    }
+  ],
+  "confidence": {
+    "value": null,
+    "method": "unknown",
+    "calibration_ref": null
+  },
+  "evidence": [],
+  "validity": {
+    "created_at": "2026-09-09T00:00:00Z",
+    "updated_at": "2026-09-09T00:00:00Z",
+    "expires_at": "2026-12-08T00:00:00Z",
+    "review_after": "2026-12-08T00:00:00Z",
+    "delete_after": null
+  },
+  "governance": {
+    "classification": "ordinary",
+    "purpose": "离线格式示例",
+    "policy_id": "consented",
+    "consent_ref": null,
+    "export_allowed": false,
+    "secret_handle": null
+  },
+  "depends_on": [],
+  "supersedes": [],
+  "retrieval": {
+    "tags": [
+      "cas",
+      "conflict"
+    ],
+    "last_used_at": null,
+    "observed_uses": 0,
+    "utility_estimate": null,
+    "utility_eval_ref": null
+  }
+}

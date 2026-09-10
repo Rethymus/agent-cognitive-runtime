@@ -1,0 +1,343 @@
+[
+  {
+    "id": 1,
+    "citation": "Anthropic，2026-09-01，[Claude Fable 产品页](https://www.anthropic.com/claude/fable)。只用于产品事实，不认证用户附件来源。",
+    "urls": [
+      "https://www.anthropic.com/claude/fable"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 2,
+    "citation": "Agent Skills，[Specification](https://agentskills.io/specification)，动态规范。",
+    "urls": [
+      "https://agentskills.io/specification"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 3,
+    "citation": "OpenAI，[Skills](https://developers.openai.com/api/docs/guides/tools-skills)，动态文档。",
+    "urls": [
+      "https://developers.openai.com/api/docs/guides/tools-skills"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 4,
+    "citation": "Anthropic，2025-09-29，[Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)。",
+    "urls": [
+      "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 5,
+    "citation": "Zhang et al.，2025-10-06，[Agentic Context Engineering](https://arxiv.org/abs/2510.04618)。",
+    "urls": [
+      "https://arxiv.org/abs/2510.04618"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 6,
+    "citation": "Yao et al.，2022-10-06，[ReAct](https://arxiv.org/abs/2210.03629)。",
+    "urls": [
+      "https://arxiv.org/abs/2210.03629"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 7,
+    "citation": "Shinn et al.，2023-03-20，[Reflexion](https://arxiv.org/abs/2303.11366)。",
+    "urls": [
+      "https://arxiv.org/abs/2303.11366"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 8,
+    "citation": "Madaan et al.，2023-03-30，[Self-Refine](https://arxiv.org/abs/2303.17651)。",
+    "urls": [
+      "https://arxiv.org/abs/2303.17651"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 9,
+    "citation": "Huang et al.，2023-10-03，[Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798)。",
+    "urls": [
+      "https://arxiv.org/abs/2310.01798"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 10,
+    "citation": "Wu et al.，2024-05-23，[Large Language Models Can Self-Correct with Key Condition Verification](https://arxiv.org/abs/2405.14092)。",
+    "urls": [
+      "https://arxiv.org/abs/2405.14092"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 11,
+    "citation": "Wang et al.，2023-05-25，[Voyager](https://arxiv.org/abs/2305.16291)。",
+    "urls": [
+      "https://arxiv.org/abs/2305.16291"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 12,
+    "citation": "Wang et al.，2024-09-11，[Agent Workflow Memory](https://arxiv.org/abs/2409.07429)。",
+    "urls": [
+      "https://arxiv.org/abs/2409.07429"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 13,
+    "citation": "Zhang et al.，2026-01-06，[MemRL](https://arxiv.org/html/2601.03192v1)，§4。",
+    "urls": [
+      "https://arxiv.org/html/2601.03192v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 14,
+    "citation": "Zhang et al.，2026-03-19，[Hyperagents](https://arxiv.org/abs/2603.19461)。",
+    "urls": [
+      "https://arxiv.org/abs/2603.19461"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 15,
+    "citation": "Chen，2026-04-23，[Process Supervision via Verbal Critique Improves Reasoning in Large Language Models](https://arxiv.org/html/2604.21611v1)，§3、§4.4 与 limitations。",
+    "urls": [
+      "https://arxiv.org/html/2604.21611v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 16,
+    "citation": "Peleg Pelc et al.，2026-05-03，[A Language for Describing Agentic LLM Contexts](https://arxiv.org/abs/2605.01920)。",
+    "urls": [
+      "https://arxiv.org/abs/2605.01920"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 17,
+    "citation": "Belikova et al.，2026-06-22，[Managing Procedural Memory in LLM Agents: Control, Adaptation, and Evaluation](https://arxiv.org/html/2606.23127v1)，AFTER 与迁移实验。",
+    "urls": [
+      "https://arxiv.org/html/2606.23127v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 18,
+    "citation": "Iacob et al.，2026-06-24，[The Red Queen Gödel Machine](https://arxiv.org/abs/2606.26294)。",
+    "urls": [
+      "https://arxiv.org/abs/2606.26294"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 19,
+    "citation": "Wei et al.，2025-11-25，[Evo-Memory](https://arxiv.org/html/2511.20857v1)。",
+    "urls": [
+      "https://arxiv.org/html/2511.20857v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 20,
+    "citation": "Hu et al.，2025-07-07，[Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions](https://arxiv.org/abs/2507.05257)。",
+    "urls": [
+      "https://arxiv.org/abs/2507.05257"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 21,
+    "citation": "Sakana AI，2025-05-30，[The Darwin Gödel Machine](https://sakana.ai/dgm/)，安全与奖励篡改案例；论文 [arXiv:2505.22954](https://arxiv.org/abs/2505.22954)。",
+    "urls": [
+      "https://sakana.ai/dgm/",
+      "https://arxiv.org/abs/2505.22954"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 22,
+    "citation": "Anthropic，2026-09-04，[Formalizing Fermat’s Last Theorem](https://www.anthropic.com/research/formalizing-fermats-last-theorem)。",
+    "urls": [
+      "https://www.anthropic.com/research/formalizing-fermats-last-theorem"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 23,
+    "citation": "Snell et al.，2024-08-06，[Scaling LLM Test-Time Compute Optimally](https://arxiv.org/abs/2408.03314)。",
+    "urls": [
+      "https://arxiv.org/abs/2408.03314"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 24,
+    "citation": "Anthropic，2025-07-22，[Inverse Scaling in Test-Time Compute](https://alignment.anthropic.com/2025/inverse-scaling/)。",
+    "urls": [
+      "https://alignment.anthropic.com/2025/inverse-scaling/"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 25,
+    "citation": "Burns et al.，2023-12-14，[Weak-to-Strong Generalization](https://arxiv.org/abs/2312.09390)。",
+    "urls": [
+      "https://arxiv.org/abs/2312.09390"
+    ],
+    "access_level": "paper_abstract_and_metadata",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 26,
+    "citation": "OpenAI，[GPT-5.6 Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna)。",
+    "urls": [
+      "https://developers.openai.com/api/docs/models/gpt-5.6-luna"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 27,
+    "citation": "OpenAI，[GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra)。",
+    "urls": [
+      "https://developers.openai.com/api/docs/models/gpt-5.6-terra"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 28,
+    "citation": "OpenAI，[GPT-5.6 Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol)。",
+    "urls": [
+      "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
+    ],
+    "access_level": "official_documentation",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 29,
+    "citation": "Anthropic，2026-01-09，[Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。",
+    "urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 30,
+    "citation": "RADAR: Reasoning-Ability and Difficulty-Aware Routing for Reasoning LLMs，ICLR 2026",
+    "urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b1f7288854d3bd476c17725c2d85967f-Abstract-Conference.html"
+    ],
+    "access_level": "official_abstract_and_selected_paper_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 31,
+    "citation": "RouteLLM: Learning to Route LLMs with Preference Data，2024/2025",
+    "urls": [
+      "https://arxiv.org/abs/2406.18665"
+    ],
+    "access_level": "paper_abstract_and_selected_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 32,
+    "citation": "WISERouter: LLM Routing with Workload Budget Constraint，2026-07-26 预印本",
+    "urls": [
+      "https://arxiv.org/abs/2607.23765"
+    ],
+    "access_level": "paper_abstract_and_selected_sections",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 33,
+    "citation": "Google Research，Towards a science of scaling agent systems，2026-01-28",
+    "urls": [
+      "https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/"
+    ],
+    "access_level": "official_research_article",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  },
+  {
+    "id": 34,
+    "citation": "XiaoDuoYa/codex-with-chatgpt，固定提交 a9f91cd98df1bc82686f57d5bc2b2993394c93be",
+    "urls": [
+      "https://github.com/XiaoDuoYa/codex-with-chatgpt/tree/a9f91cd98df1bc82686f57d5bc2b2993394c93be"
+    ],
+    "access_level": "readmes_architecture_protocol_security_troubleshooting_and_selected_code",
+    "checked_at": "2026-09-09",
+    "reproduced": false
+  }
+]

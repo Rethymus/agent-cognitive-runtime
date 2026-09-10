@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adaptive routing request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "request_id",
+    "features",
+    "evidence_refs",
+    "coordinator_binding",
+    "is_child",
+    "independent_work",
+    "probe_completed",
+    "failures",
+    "strong_review_failed",
+    "exceptional",
+    "prior_role",
+    "checkpoint_verified",
+    "decision_ref"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ambiguity",
+        "dependency",
+        "constraints",
+        "novelty",
+        "verification",
+        "reversibility",
+        "risk",
+        "phase",
+        "failure_type"
+      ],
+      "properties": {
+        "ambiguity": {
+          "enum": [
+            "clear",
+            "unknown",
+            "conflicting"
+          ]
+        },
+        "dependency": {
+          "enum": [
+            "local",
+            "unknown",
+            "coupled"
+          ]
+        },
+        "constraints": {
+          "enum": [
+            "single",
+            "unknown",
+            "interacting"
+          ]
+        },
+        "novelty": {
+          "enum": [
+            "known",
+            "unknown",
+            "new"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "deterministic",
+            "partial",
+            "unknown"
+          ]
+        },
+        "reversibility": {
+          "enum": [
+            "reversible",
+            "unknown",
+            "irreversible"
+          ]
+        },
+        "risk": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "decision",
+            "execution"
+          ]
+        },
+        "failure_type": {
+          "enum": [
+            "none",
+            "environment",
+            "execution",
+            "reasoning"
+          ]
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1500
+      }
+    },
+    "coordinator_binding": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "is_child": {
+      "type": "boolean"
+    },
+    "independent_work": {
+      "type": "boolean"
+    },
+    "probe_completed": {
+      "type": "boolean"
+    },
+    "failures": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "strong_review_failed": {
+      "type": "boolean"
+    },
+    "exceptional": {
+      "type": "boolean"
+    },
+    "prior_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "checkpoint_verified": {
+      "type": "boolean"
+    },
+    "decision_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

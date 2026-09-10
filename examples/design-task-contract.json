@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.1",
+  "id": "contract-demo-001",
+  "revision": 1,
+  "scope": {
+    "tenant_id": "local",
+    "user_id": "owner",
+    "project_id": "demo-project",
+    "domain": "coding"
+  },
+  "goal": "在隔离 fixture 中修复并发记录覆盖问题",
+  "deliverables": [
+    "修复补丁与验证回执"
+  ],
+  "in_scope": [
+    "单记录 CAS"
+  ],
+  "out_of_scope": [
+    "生产发布"
+  ],
+  "constraints": [
+    "保留外部合法变更"
+  ],
+  "known": [
+    "测试环境可重置"
+  ],
+  "unknown": [
+    "真实生产冲突分布"
+  ],
+  "success_criteria": [
+    {
+      "id": "cas-1",
+      "description": "陈旧 revision 更新失败且不覆盖新内容",
+      "method": "execution",
+      "required": true
+    }
+  ],
+  "authorization": {
+    "source_ref": "fixture:request",
+    "allowed_tools": [
+      "fixture.read",
+      "fixture.patch",
+      "fixture.test"
+    ],
+    "allowed_side_effects": [
+      "temporary_fixture_write"
+    ],
+    "write_scope": [
+      "fixture/"
+    ]
+  },
+  "budget": {
+    "currency": "USD",
+    "max_cost": 0.1,
+    "max_tool_calls": 12,
+    "max_retries": 2,
+    "max_teacher_rounds": 1,
+    "deadline": null
+  },
+  "rollback": "丢弃隔离 fixture；保留验证回执",
+  "classification": {
+    "task_family": "coding",
+    "complexity": "medium",
+    "risk": "low",
+    "verifiability": "executable"
+  }
+}

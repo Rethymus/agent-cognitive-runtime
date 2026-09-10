@@ -1,0 +1,29 @@
+{
+  "task_id": "current-thread:stable-user-objective",
+  "request_id": "bounded-execution-01",
+  "features": {
+    "ambiguity": "clear",
+    "dependency": "local",
+    "constraints": "single",
+    "novelty": "known",
+    "verification": "deterministic",
+    "reversibility": "reversible",
+    "risk": "low",
+    "phase": "execution",
+    "failure_type": "none"
+  },
+  "evidence_refs": [
+    "project/tests/acceptance.py:12",
+    "用户约定：执行现成测试，仅写报告"
+  ],
+  "coordinator_binding": "frontier",
+  "is_child": false,
+  "independent_work": true,
+  "probe_completed": false,
+  "failures": 0,
+  "strong_review_failed": false,
+  "exceptional": false,
+  "prior_role": null,
+  "checkpoint_verified": false,
+  "decision_ref": null
+}

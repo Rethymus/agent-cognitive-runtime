@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "template_not_observation",
+  "task_id": null,
+  "task_family": null,
+  "split": null,
+  "task_input_hash": null,
+  "acceptance_contract_hash": null,
+  "harness_version": "0.3.0-local",
+  "policy_hash": null,
+  "registry_hash": null,
+  "decision_features": {},
+  "decision_evidence_refs": [],
+  "arms": [
+    {
+      "model_id": null,
+      "reasoning_effort": null,
+      "executed": false,
+      "outcome": "unknown",
+      "independent_verification_ref": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "reasoning_tokens": null,
+      "usage_source": null,
+      "elapsed_seconds": null,
+      "cost": null,
+      "currency": null
+    }
+  ],
+  "selection_method": "not_yet_assigned",
+  "actual_selection_probability": null,
+  "paired_group_id": null,
+  "critical_errors": null,
+  "scope_violations": null,
+  "root_usage": null,
+  "coordination_usage": null,
+  "notes": "未运行的方案保留 unknown；主子用量缺失用 null；只存公开决策与验收，不存私有思维链。"
+}

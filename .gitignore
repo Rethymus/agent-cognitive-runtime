@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+work/
+.acr-state/
+*.sqlite3*
+*.db
+*.before
+*installation-receipt*.json
+live-*.json
+.env
+.env.*
+!.env.example

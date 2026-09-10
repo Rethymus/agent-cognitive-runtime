@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:acr:v0.1:critique",
+  "title": "critique",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1"
+      ]
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewer_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "failure_mode": {
+            "type": "string",
+            "minLength": 1
+          },
+          "suggested_change": {
+            "type": "string",
+            "minLength": 1
+          },
+          "test_to_run": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          }
+        },
+        "required": [
+          "issue_id",
+          "location",
+          "claim",
+          "evidence_refs",
+          "failure_mode",
+          "suggested_change",
+          "test_to_run",
+          "severity"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "verdict": {
+      "enum": [
+        "revise",
+        "no_blocking_issue",
+        "insufficient_evidence"
+      ]
+    },
+    "usage_ref": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "contract_id",
+    "artifact_hash",
+    "reviewer_model",
+    "issues",
+    "verdict",
+    "usage_ref"
+  ],
+  "additionalProperties": false
+}

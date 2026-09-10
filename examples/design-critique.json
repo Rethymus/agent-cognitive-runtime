@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "review_id": "review-demo",
+  "contract_id": "contract-demo-001",
+  "artifact_hash": "d35bde0988e0660976c6c896da2c4878c8dfbd5bf504ad1b28fa117772d1972a",
+  "reviewer_model": "example-not-real-call",
+  "issues": [
+    {
+      "issue_id": "issue-1",
+      "location": "fixture:update",
+      "claim": "陈旧版本应被拒绝",
+      "evidence_refs": [
+        "fixture:cas-conflict"
+      ],
+      "failure_mode": "覆盖",
+      "suggested_change": "增加 CAS 前提",
+      "test_to_run": "stale_revision",
+      "severity": "major"
+    }
+  ],
+  "verdict": "revise",
+  "usage_ref": "fixture:no-api-call"
+}

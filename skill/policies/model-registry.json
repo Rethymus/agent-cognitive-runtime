@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "revision": "2026-09-09.1",
+  "description": "模型绑定表：升级模型主要修改此文件，不将具体模型名称写入角色定义或路由代码。supported_efforts 是当前 Codex 可用集合，不推断不同模型档位等价。",
+  "verified_on": "2026-09-09",
+  "review_after": "2026-10-09",
+  "verification_basis": "2026-09-09 研究环境的宿主模型目录快照；不能推断其他账号或未来宿主可用。安装者须核对实际 model ID 和 effort；本仓库不提供全模型组合实测。",
+  "models": {
+    "economy": {
+      "model_id": "gpt-5.6-luna",
+      "provider": "openai",
+      "adapter": "codex",
+      "status": "active",
+      "tier": "economy",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "capabilities": [
+        "tools",
+        "bounded_execution"
+      ],
+      "official_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "evaluation_status": "not_calibrated"
+    },
+    "reasoner": {
+      "model_id": "gpt-5.6-sol",
+      "provider": "openai",
+      "adapter": "codex",
+      "status": "active",
+      "tier": "reasoner",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "capabilities": [
+        "tools",
+        "bounded_execution",
+        "decision",
+        "review"
+      ],
+      "official_source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "evaluation_status": "not_calibrated"
+    },
+    "frontier": {
+      "model_id": "gpt-6-astra",
+      "provider": "openai",
+      "adapter": "codex",
+      "status": "active",
+      "tier": "frontier",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "capabilities": [
+        "tools",
+        "bounded_execution",
+        "decision",
+        "review",
+        "architecture",
+        "hard_problem"
+      ],
+      "official_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "evaluation_status": "not_calibrated"
+    }
+  }
+}

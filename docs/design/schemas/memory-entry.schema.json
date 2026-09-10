@@ -1,0 +1,494 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:acr:v0.1:memory-entry",
+  "title": "memory-entry",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "type": {
+      "enum": [
+        "user",
+        "project",
+        "episodic",
+        "failure",
+        "procedural",
+        "skill_library",
+        "evaluation"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "user_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "project_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "tenant_id",
+        "user_id",
+        "project_id",
+        "domain"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "verified",
+        "promoted",
+        "deprecated",
+        "rejected",
+        "revoked"
+      ]
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_kind": {
+      "enum": [
+        "user_stated",
+        "tool_observed",
+        "agent_inferred",
+        "teacher_critique",
+        "execution_failure",
+        "eval_validated"
+      ]
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "speaker": {
+            "enum": [
+              "user",
+              "assistant",
+              "tool",
+              "document",
+              "evaluator"
+            ]
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "source_ref",
+          "locator",
+          "speaker",
+          "captured_at",
+          "content_hash"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "method": {
+          "enum": [
+            "unknown",
+            "self_report",
+            "empirical",
+            "source_attribution"
+          ]
+        },
+        "calibration_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "value",
+        "method",
+        "calibration_ref"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "receipt_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verifier_identity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "enum": [
+              "source_attribution",
+              "execution",
+              "schema",
+              "calculation",
+              "human_review",
+              "paired_eval"
+            ]
+          },
+          "subject_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "verified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "receipt_ref",
+          "verifier_identity",
+          "method",
+          "subject_hash",
+          "result",
+          "verified_at"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "validity": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "review_after": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "delete_after": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "created_at",
+        "updated_at",
+        "expires_at",
+        "review_after",
+        "delete_after"
+      ],
+      "additionalProperties": false
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "enum": [
+            "ordinary",
+            "sensitive",
+            "confidential"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consent_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "export_allowed": {
+          "type": "boolean"
+        },
+        "secret_handle": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "classification",
+        "purpose",
+        "policy_id",
+        "consent_ref",
+        "export_allowed",
+        "secret_handle"
+      ],
+      "additionalProperties": false
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "content_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "content_hash"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "retrieval": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "last_used_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "observed_uses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "utility_estimate": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "utility_eval_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "tags",
+        "last_used_at",
+        "observed_uses",
+        "utility_estimate",
+        "utility_eval_ref"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "type",
+    "scope",
+    "status",
+    "claim",
+    "source_kind",
+    "provenance",
+    "confidence",
+    "evidence",
+    "validity",
+    "governance",
+    "depends_on",
+    "supersedes",
+    "retrieval"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "verified",
+              "promoted"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "user"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_kind": {
+            "const": "user_stated"
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "verified",
+              "deprecated",
+              "rejected",
+              "revoked"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "promoted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "type": {
+            "enum": [
+              "procedural",
+              "skill_library"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "confidence": {
+            "properties": {
+              "method": {
+                "const": "empirical"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "confidence": {
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "calibration_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
