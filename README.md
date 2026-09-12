@@ -112,7 +112,9 @@ User / Project / Episodic / Failure / Procedural / Skill Library / Evaluation �
 
 研究从用户提供的 Fable 附件机制审查出发，结合 Agent Skills、context engineering、ReAct、Reflexion、Self-Refine、Voyager、弱强监督和模型路由研究。原附件身份未被认证，全文不随仓库分发。
 
-[研究导航](docs/research/README.md) · [双向路由研究](docs/research/adaptive-routing.md) · [参考仓库分析](docs/research/reference-repository.md) · [评测设计](docs/evaluation.md)
+[研究导航](docs/research/README.md) · [9 月深度证据审查](docs/research/evidence-review-2026-09.md) · [双向路由研究](docs/research/adaptive-routing.md) · [评测设计](docs/evaluation.md)
+
+研究记录将原论文结论、适用限制和项目实测分开。新增的 [证据映射](docs/research/evidence-map.json) 与 [持续开发流程](docs/research/development-program.md) 把 10 条主张关联到 8 组待运行实验；尚不宣称 Luna+Harness 已达到 Sol 的质量或节省了多少额度。
 
 ```sh
 python -X utf8 -m unittest discover -s tests -v
@@ -128,14 +130,12 @@ skill/              可安装的 Skill、内核、策略、接口示例
 scripts/            安装、诊断、回滚与仓库检查
 tests/              记忆、路由、预算和安装测试
 docs/               安装、架构、协议、维护与故障排查
-  research/         研究依据、附件迁移记录、参考仓库分析
+  research/         研究依据、附件迁移记录与证据审查
   design/           尚未全部实现的目标协议与 schema
 evals/              任务场景、对照实验和运行记录模板
 examples/           目标协议的格式示例
 ```
 
-## 参考与许可
-
-项目组织与 README 的用户路径参考了 [XiaoDuoYa/codex-with-chatgpt](https://github.com/XiaoDuoYa/codex-with-chatgpt)：先讲问题，提供可交给 Agent 的安装入口，再解释架构、验证和维护。本项目独立实现本地记忆和子代理路由，不包含其浏览器、MCP、OAuth 或隧道实现，也不调用 ChatGPT 网页额度。
+## 许可
 
 非官方社区项目，与 OpenAI 或 Anthropic 无隶属关系。[MIT License](LICENSE) 适用于本仓库原创代码与文档；外部论文、参考项目与原始附件保留各自权利。

@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.0",
+  "program_id": "ACR-RP-2026-09",
+  "created_at": "2026-09-12",
+  "status": "specified_not_run",
+  "executable_runner": false,
+  "relationship_to_existing_evals": "独立于历史 experiment.json；不得合并为已运行结果。",
+  "constraints": {
+    "economy_efforts": [
+      "xhigh",
+      "max"
+    ],
+    "strong_daily_efforts": [
+      "medium",
+      "high"
+    ],
+    "strong_hard_efforts": [
+      "xhigh",
+      "max"
+    ],
+    "auto_promotion": false,
+    "add_paid_api_services": false,
+    "private_chain_of_thought": false
+  },
+  "model_bindings": "执行前解析当日宿主注册表并冻结实际 model/effort，不硬编码论文中的模型。",
+  "required_before_run": [
+    "独立任务 fixtures 与可信标签",
+    "冻结模型、工具、环境、代码和记忆版本",
+    "给定预算内的调用准入与完整失败记录",
+    "冻结主要对照、样本量和验收阈值",
+    "可审计的 train/calibration/holdout 划分与查询预算"
+  ],
+  "design": {
+    "independent_unit": "task_cluster",
+    "repeats": "同任务重复运行嵌套于 task_cluster，不当独立任务",
+    "allocation": "任务族内随机交错；复用相同初始状态；避免先跑完一整组造成时间混淆",
+    "sample_size": null,
+    "power_analysis": "pilot 估计方差后，按最小有意义差异和预算确定；正式实验前冻结",
+    "noninferiority_margin": null,
+    "serious_error_limit": null,
+    "holdout_query_budget": null,
+    "null_fields": "未确定的执行前置参数；为 null 时不能宣布正式实验已就绪或通过",
+    "intervals": "按任务簇做配对区间；严重错误报告分母与区间；多重比较预声明主要终点",
+    "missingness": "失败和超时保留；usage 缺失用 null，不替换为 0",
+    "stopping": "权限或完整性失效立即停止；预算到达停止并标未完成；不按有利中期分数提前宣布成功"
+  },
+  "cost_components": [
+    "root",
+    "routing_probe",
+    "teacher_preparation",
+    "context_transfer",
+    "worker",
+    "verification",
+    "rework",
+    "failed_calls",
+    "environment"
+  ],
+  "receipts_required": [
+    "task_id",
+    "task_cluster",
+    "arm",
+    "model",
+    "effort",
+    "input_hash",
+    "memory_version",
+    "tool_versions",
+    "environment_manifest",
+    "started_at",
+    "duration",
+    "acceptance_evidence",
+    "failure_class",
+    "usage_or_null",
+    "usage_provenance"
+  ],
+  "teacher_cost_reporting": "同时报告 cold-start 和按实际 N 次复用摊销的成本；不把 API 金额换算为订阅额度。",
+  "experiments": [
+    {
+      "experiment_id": "H01",
+      "question": "证据路由的质量与完整成本",
+      "claim_ids": [
+        "C01",
+        "C10"
+      ],
+      "arms": [
+        "economy_fixed",
+        "strong_fixed",
+        "fixed_delegation",
+        "adaptive_evidence"
+      ],
+      "controlled_contrast": "同一任务、输入、工具和总预算；只改变派发策略。",
+      "primary_and_safety_metrics": [
+        "acceptance_rate",
+        "serious_error_rate",
+        "total_cost_per_accepted_task",
+        "latency_p95"
+      ],
+      "safeguards": "任务族内随机交错配对；记录所有路由选择，不只收集被选择模型的结果。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H02",
+      "question": "effort 与有界教师决策的边际价值",
+      "claim_ids": [
+        "C02"
+      ],
+      "arms": [
+        "economy_xhigh",
+        "economy_max",
+        "strong_decision_economy_execution",
+        "strong_end_to_end"
+      ],
+      "controlled_contrast": "先固定模型比较 xhigh/max，再固定任务比较教师决策与全程执行；两个比较分别分析。",
+      "primary_and_safety_metrics": [
+        "acceptance_rate",
+        "negative_revision_rate",
+        "total_cost",
+        "latency_p95"
+      ],
+      "safeguards": "固定调用次数与固定总成本是两个协议；正式执行时分别冻结。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H03",
+      "question": "记忆全生命周期与诱发错误",
+      "claim_ids": [
+        "C05",
+        "C06",
+        "C07"
+      ],
+      "arms": [
+        "no_memory",
+        "structured_summary",
+        "scoped_assets",
+        "controlled_stale_or_conflicting_memory"
+      ],
+      "controlled_contrast": "同一观察、当前任务、纠正与后续任务；在共同检查点分叉。",
+      "primary_and_safety_metrics": [
+        "retention_rate",
+        "initial_evidence_use",
+        "feedback_incorporation",
+        "followup_reuse",
+        "memory_induced_error_rate"
+      ],
+      "safeguards": "事实纠正、工具版本变化、跨项目范围、应使用偏好、不应使用偏好均设分层。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H04",
+      "question": "教师资产粒度与程序迁移",
+      "claim_ids": [
+        "C03",
+        "C04"
+      ],
+      "arms": [
+        "no_asset",
+        "abstract_workflow",
+        "concrete_subtask",
+        "subtask_with_function_repair"
+      ],
+      "controlled_contrast": "同一组训练侧已验证教师材料，改变资产粒度；测试实例与训练分离。",
+      "primary_and_safety_metrics": [
+        "heldout_acceptance_rate",
+        "negative_transfer_rate",
+        "tool_error_rate",
+        "amortized_total_cost"
+      ],
+      "safeguards": "近重复任务按来源/模板簇分组；增加工具变化和不适用负对照，教师自身不接触留出答案。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H05",
+      "question": "评审者能力与增量验收价值",
+      "claim_ids": [
+        "C08"
+      ],
+      "arms": [
+        "deterministic_checks",
+        "checks_plus_calibrated_judge",
+        "checks_plus_cross_family_judge"
+      ],
+      "controlled_contrast": "同一已标注产物，盲化作者/模型名称并交换呈现顺序。",
+      "primary_and_safety_metrics": [
+        "defect_false_negative_rate",
+        "false_alarm_rate",
+        "correct_to_incorrect_revision_rate",
+        "review_cost"
+      ],
+      "safeguards": "确定性标签和专家标签分层，模型辅助标签不得当作独立金标准。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H06",
+      "question": "评测污染与晋升边界",
+      "claim_ids": [
+        "C09"
+      ],
+      "arms": [
+        "intentionally_unisolated_control",
+        "isolated_evaluator_candidate"
+      ],
+      "controlled_contrast": "在人工构造测试环境中播种答案访问、评分器修改和重复留出查询机会。",
+      "primary_and_safety_metrics": [
+        "tamper_detection_rate",
+        "false_alarm_rate",
+        "unauthorized_publish_count",
+        "holdout_query_accounting"
+      ],
+      "safeguards": "只测可观测行为，不记录私有思维链；先验证 canary 本身有效，再解释结果。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H07",
+      "question": "环境可复现与用量账目",
+      "claim_ids": [
+        "C10"
+      ],
+      "arms": [
+        "frozen_environment",
+        "controlled_resource_perturbation"
+      ],
+      "controlled_contrast": "同一任务/模型/输入，只改变已声明资源因素；单独注入缺失回执。",
+      "primary_and_safety_metrics": [
+        "end_to_end_acceptance_rate",
+        "environment_conditioned_acceptance_rate",
+        "receipt_completeness",
+        "latency_p95"
+      ],
+      "safeguards": "报告所有环境失败和成本；扰动条件不混入主要能力对照。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    },
+    {
+      "experiment_id": "H08",
+      "question": "新模型与旧资产兼容性",
+      "claim_ids": [
+        "C03",
+        "C10"
+      ],
+      "arms": [
+        "current_binding_assets",
+        "new_binding_old_assets",
+        "new_binding_revalidated_assets"
+      ],
+      "controlled_contrast": "冻结任务与工具，记录新模型能力声明及资产版本；校准与迁移集分离。",
+      "primary_and_safety_metrics": [
+        "anchor_acceptance_rate",
+        "transfer_acceptance_rate",
+        "routing_error_rate",
+        "total_cost"
+      ],
+      "safeguards": "新旧模型分别绑定宿主可用 effort；新模型不能自动继承旧质量证据。",
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
+    }
+  ]
+}

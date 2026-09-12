@@ -64,8 +64,8 @@ Tests cover software invariants, not model quality. CI targets Linux and Windows
 
 The full research and operating documentation is currently in Chinese: [architecture](docs/architecture.md), [protocol](docs/protocol.md), [evaluation](docs/evaluation.md), [research](docs/research/README.md), [maintenance](docs/maintenance.md), [troubleshooting](docs/troubleshooting.md).
 
-## Reference and license
+The [September evidence review](docs/research/evidence-review-2026-09.md) separates published findings, limitations and untested engineering hypotheses. A [claim map](docs/research/evidence-map.json), [eight-experiment research protocol](evals/research-program.json) and [development process](docs/research/development-program.md) support future updates. These are research artifacts, not completed model benchmarks or evidence of quota savings.
 
-Repository organization and the README journey were informed by [codex-with-chatgpt](https://github.com/XiaoDuoYa/codex-with-chatgpt). This implementation does not include its browser/MCP/OAuth/tunnel bridge and does not use ChatGPT web quota. See the [reference analysis](docs/research/reference-repository.md).
+## License
 
 Unofficial community project. Not affiliated with OpenAI or Anthropic. [MIT](LICENSE) covers original repository material; external sources retain their own rights.

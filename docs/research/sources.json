@@ -331,13 +331,270 @@
     "reproduced": false
   },
   {
-    "id": 34,
-    "citation": "XiaoDuoYa/codex-with-chatgpt，固定提交 a9f91cd98df1bc82686f57d5bc2b2993394c93be",
+    "id": 35,
+    "citation": "Anthropic，2026-02-05，[Quantifying infrastructure noise in agentic coding evals](https://www.anthropic.com/engineering/infrastructure-noise)。",
+    "authors": "Anthropic",
+    "title": "Quantifying infrastructure noise in agentic coding evals",
+    "first_published": "2026-02-05",
+    "version_read": null,
+    "source_type": "official_engineering_report",
     "urls": [
-      "https://github.com/XiaoDuoYa/codex-with-chatgpt/tree/a9f91cd98df1bc82686f57d5bc2b2993394c93be"
+      "https://www.anthropic.com/engineering/infrastructure-noise"
     ],
-    "access_level": "readmes_architecture_protocol_security_troubleshooting_and_selected_code",
-    "checked_at": "2026-09-09",
-    "reproduced": false
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "全文：资源配置、实验与解释边界"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "基础设施影响需在本项目任务和宿主上重新测量。"
+  },
+  {
+    "id": 36,
+    "citation": "Anthropic，2026-03-06，[Eval awareness in Claude Opus 4.6’s BrowseComp performance](https://www.anthropic.com/engineering/eval-awareness-browsecomp)。",
+    "authors": "Anthropic",
+    "title": "Eval awareness in Claude Opus 4.6’s BrowseComp performance",
+    "first_published": "2026-03-06",
+    "version_read": null,
+    "source_type": "official_engineering_case_study",
+    "urls": [
+      "https://www.anthropic.com/engineering/eval-awareness-browsecomp"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "全文：评测感知与基准材料访问案例"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "案例不提供所有模型或任务的发生率。"
+  },
+  {
+    "id": 37,
+    "citation": "Vansh Wahi，2026-09-02，[LLM-as-a-Judge Is Not an Oracle: Why Self-Improving Agents Need Deterministic Guardrails](https://arxiv.org/abs/2609.02246)。",
+    "authors": "Vansh Wahi",
+    "title": "LLM-as-a-Judge Is Not an Oracle: Why Self-Improving Agents Need Deterministic Guardrails",
+    "first_published": "2026-09-02",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint_field_report",
+    "urls": [
+      "https://arxiv.org/abs/2609.02246",
+      "https://arxiv.org/html/2609.02246v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "§2 标签与系统",
+      "§5 验证与架构限制",
+      "§8 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "无公开可复现实验系统；单家族、单次、小样本，部分标签由模型生成；多角色建议未完整评测。"
+  },
+  {
+    "id": 38,
+    "citation": "Dani Roytburg et al.，2026-01-30，[Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations](https://arxiv.org/abs/2601.22548)。",
+    "authors": "Dani Roytburg et al.",
+    "title": "Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations",
+    "first_published": "2026-01-30",
+    "version_read": "v4",
+    "source_type": "arxiv_version_with_reported_acceptance",
+    "urls": [
+      "https://arxiv.org/abs/2601.22548",
+      "https://arxiv.org/html/2601.22548v4"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "v1 初读摘要与局限",
+      "v4 §3.3–4.1 方法与对照",
+      "v4 §5.1 解释",
+      "v4 §6 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "评审能力匹配与主观标签仍有误差，不证明偏好完全不存在。",
+    "version_date": "2026-06-22",
+    "publication_note": "arXiv Comments 标注 ICML 2026 Main；本轮核对 arXiv v4，未核对正式会议出版版本。"
+  },
+  {
+    "id": 39,
+    "citation": "Zhishang Xiang et al.，2026-07-01，[MemSyco-Bench: Benchmarking Sycophancy in Agent Memory](https://arxiv.org/abs/2607.01071)。",
+    "authors": "Zhishang Xiang et al.",
+    "title": "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory",
+    "first_published": "2026-07-01",
+    "version_read": "v2",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2607.01071",
+      "https://arxiv.org/html/2607.01071v2"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "v1 摘要与初步研究",
+      "v2 §3.2–3.3 分类与合成构造"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "合成对话与决策结构不直接代表真实用户事件分布；未复现基准。",
+    "version_date": "2026-07-02"
+  },
+  {
+    "id": 40,
+    "citation": "Liuyin Wang，2026-06-05，[Less Context, More Accuracy: A Bi-Temporal Memory Engine for LLM Agents Where a Lean Retrieved Context Beats the Full History](https://arxiv.org/abs/2606.09900)。",
+    "authors": "Liuyin Wang",
+    "title": "Less Context, More Accuracy: A Bi-Temporal Memory Engine for LLM Agents Where a Lean Retrieved Context Beats the Full History",
+    "first_published": "2026-06-05",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2606.09900",
+      "https://arxiv.org/html/2606.09900v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "摘要",
+      "§3.1 双时间",
+      "§5 结果",
+      "§6 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "单 benchmark、单回答模型、每系统单次；facts-only vs hybrid 完整消融未完成。"
+  },
+  {
+    "id": 41,
+    "citation": "Shu Zhou et al.，2026-04-12，[When More Thinking Hurts: Overthinking in LLM Test-Time Compute Scaling](https://arxiv.org/abs/2604.10739)。",
+    "authors": "Shu Zhou et al.",
+    "title": "When More Thinking Hurts: Overthinking in LLM Test-Time Compute Scaling",
+    "first_published": "2026-04-12",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2604.10739",
+      "https://arxiv.org/html/2604.10739v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "摘要",
+      "§5.4",
+      "§6 与 Limitations"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "数学/科学与开放模型上的观察不直接迁移到 Codex effort，不建立普遍因果结论。"
+  },
+  {
+    "id": 42,
+    "citation": "Amit Roth et al.，2026-05-20，[Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale](https://arxiv.org/abs/2605.20744)。",
+    "authors": "Amit Roth et al.",
+    "title": "Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale",
+    "first_published": "2026-05-20",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2605.20744",
+      "https://arxiv.org/html/2605.20744v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "摘要",
+      "§6.2",
+      "§7 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "构造环境与预设违规机会限制覆盖；行为事件不能单独证明内在意图。"
+  },
+  {
+    "id": 43,
+    "citation": "Xingze Gao et al.，2026-07-06，[EvoAgentBench: Benchmarking Agent Self-Evolution via Ability Transfer](https://arxiv.org/abs/2607.05202)。",
+    "authors": "Xingze Gao et al.",
+    "title": "EvoAgentBench: Benchmarking Agent Self-Evolution via Ability Transfer",
+    "first_published": "2026-07-06",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2607.05202",
+      "https://arxiv.org/html/2607.05202v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "§1–3 方法与划分",
+      "§4 实验",
+      "§5 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "Anchor Skill 使用研究者能力标签；任务有选择、每 cell 三次运行，预训练污染无法排除。"
+  },
+  {
+    "id": 44,
+    "citation": "Wujiang Xu et al.，2026-05-20，[MemGym: a Long-Horizon Memory Environment for LLM Agents](https://arxiv.org/abs/2605.20833)。",
+    "authors": "Wujiang Xu et al.",
+    "title": "MemGym: a Long-Horizon Memory Environment for LLM Agents",
+    "first_published": "2026-05-20",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint",
+    "urls": [
+      "https://arxiv.org/abs/2605.20833",
+      "https://arxiv.org/html/2605.20833v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "§1–4",
+      "附录 C、E 策略",
+      "附录 J.3 局限"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "部分轨道合成；pilot 不覆盖所有 cell 的统计功效；记忆改变后续行为。"
+  },
+  {
+    "id": 45,
+    "citation": "Guanming Liu et al.，2026-06-12，[StreamMemBench: Streaming Evaluation of Agent Memory for Future-Oriented Assistance](https://arxiv.org/abs/2606.14571)。",
+    "authors": "Guanming Liu et al.",
+    "title": "StreamMemBench: Streaming Evaluation of Agent Memory for Future-Oriented Assistance",
+    "first_published": "2026-06-12",
+    "version_read": "v2",
+    "source_type": "arxiv_version_with_reported_acceptance",
+    "urls": [
+      "https://arxiv.org/abs/2606.14571",
+      "https://arxiv.org/html/2606.14571v2"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "§3 方法",
+      "§4 评测与分析",
+      "§5 局限",
+      "附录 C–F 与许可说明"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "个人生活流、模型评审与有限系统覆盖；仅借鉴实验结构，未分发数据。",
+    "version_date": "2026-08-26",
+    "publication_note": "arXiv Comments 标注 Accepted to Findings of EMNLP 2026；未核对正式会议出版版本。",
+    "reading_note": "摘要为两个主 backbone，附录 C 为第三个补充 backbone；不把补充结果混作主实验。"
+  },
+  {
+    "id": 46,
+    "citation": "Taeil Kim; Kangsan Kim; Sung Ju Hwang，2026-08-07，[Agent Memory Distillation: Empowering Small LLM Agents with Hierarchical Teacher Memory](https://arxiv.org/abs/2608.07169)。",
+    "authors": "Taeil Kim; Kangsan Kim; Sung Ju Hwang",
+    "title": "Agent Memory Distillation: Empowering Small LLM Agents with Hierarchical Teacher Memory",
+    "first_published": "2026-08-07",
+    "version_read": "v1",
+    "source_type": "arxiv_preprint_under_review",
+    "urls": [
+      "https://arxiv.org/abs/2608.07169",
+      "https://arxiv.org/html/2608.07169v1"
+    ],
+    "access_level": "full_text_relevant_sections",
+    "read_sections": [
+      "§3 方法",
+      "§5.1–5.5 分析",
+      "结论中的限制",
+      "附录 B.3–B.4 分离与重复实验"
+    ],
+    "checked_at": "2026-09-12",
+    "reproduced": false,
+    "limitations": "静态离线记忆、有限工具任务；主实验与任务分离附录不能混用；重复与分离验证只用一个学生。"
   }
 ]

@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-09-12",
+  "status": "research_only",
+  "runtime_version": "0.3.1",
+  "confidence_semantics": "标签描述证据适用范围，不是模型自评概率或本项目成功率。",
+  "claims": [
+    {
+      "claim_id": "C01",
+      "claim": "任务难度依赖模型和预算，难度估计本身必须计入成本。",
+      "source_ids": [
+        23,
+        31,
+        32
+      ],
+      "experiment_ids": [
+        "H01"
+      ],
+      "evidence_scope": "math_to_agent_transfer_unverified",
+      "limitations": "已有推理研究的采样成本不能直接当作在线可用路由；规则得分不是成功概率。",
+      "falsifier": "若计入查证和路由成本后不优于固定策略，应缩减路由。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C02",
+      "claim": "更多推理量可能无益；模型与 effort 应分别配对比较。",
+      "source_ids": [
+        23,
+        24,
+        41
+      ],
+      "experiment_ids": [
+        "H02"
+      ],
+      "evidence_scope": "vendor_effort_transfer_unverified",
+      "limitations": "数学和开放模型结果不能修改用户指定的 Luna xhigh/max 下限。",
+      "falsifier": "若 max 不改善验收或延迟显著增加，不扩大 max 使用范围。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C03",
+      "claim": "教师资产的可执行粒度及学生兼容性需要单独评估。",
+      "source_ids": [
+        46
+      ],
+      "experiment_ids": [
+        "H04",
+        "H08"
+      ],
+      "evidence_scope": "tool_benchmarks_to_codex_unverified",
+      "limitations": "主实验、单学生分离检验、离线静态记忆不能证明持续在线学习。",
+      "falsifier": "仅在原任务有效或使用旧接口时错误增加，拒绝晋升。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C04",
+      "claim": "程序性经验需要任务分离和不适用负对照，自动迁移并非处处正收益。",
+      "source_ids": [
+        12,
+        17,
+        43
+      ],
+      "experiment_ids": [
+        "H04"
+      ],
+      "evidence_scope": "procedural_transfer_requires_local_eval",
+      "limitations": "能力标签辅助的 Anchor 不能充当可部署自动路由结果。",
+      "falsifier": "同类新实例或负对照退化，收窄 scope 或废弃资产。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C05",
+      "claim": "保留、当前使用、反馈吸收和后续复用是不同验收环节。",
+      "source_ids": [
+        44,
+        45
+      ],
+      "experiment_ids": [
+        "H03"
+      ],
+      "evidence_scope": "memory_lifecycle_design_supported",
+      "limitations": "个人助理流、合成任务和固定 reasoner 的结果不能直接推算代码工作收益。",
+      "falsifier": "只提高召回而不改善后续验收，不认定任务能力提升。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C06",
+      "claim": "相关记忆也可能诱发事实或作用域错误。",
+      "source_ids": [
+        39
+      ],
+      "experiment_ids": [
+        "H03"
+      ],
+      "evidence_scope": "failure_mode_supported_prevalence_unknown",
+      "limitations": "合成决策结构不提供真实用户发生率。",
+      "falsifier": "正确变错误增加时，收紧召回或使用条件。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C07",
+      "claim": "TTL/CAS 不能代替事实有效时间与语义纠错。",
+      "source_ids": [
+        40
+      ],
+      "experiment_ids": [
+        "H03"
+      ],
+      "evidence_scope": "engineering_inference_not_runtime_feature",
+      "limitations": "Engram 单次单模型；完整 facts-only 消融未完成。",
+      "falsifier": "双时间字段不能减少版本冲突误用，暂缓增加存储复杂度。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C08",
+      "claim": "强模型审查不是独立真值，需校准与不可覆盖的验收条件。",
+      "source_ids": [
+        9,
+        10,
+        37,
+        38
+      ],
+      "experiment_ids": [
+        "H05"
+      ],
+      "evidence_scope": "judge_calibration_required",
+      "limitations": "工程报告不可直接复现；能力混淆可能影响偏见解释；确定性格式检查不证明语义。",
+      "falsifier": "漏报、误报或改错为错未改善，则减少评审层数。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C09",
+      "claim": "可访问答案或反复查询的留出集不能作为独立晋升证据。",
+      "source_ids": [
+        36,
+        37,
+        42
+      ],
+      "experiment_ids": [
+        "H06"
+      ],
+      "evidence_scope": "evaluation_integrity_design",
+      "limitations": "案例不估计发生率；可观测事件不等于内在意图；隔离尚未实现。",
+      "falsifier": "可写评分器、答案访问或预算绕过存在时，不开放晋升。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C10",
+      "claim": "环境与完整成本账目是比较模型和 Harness 的前置条件。",
+      "source_ids": [
+        35,
+        44
+      ],
+      "experiment_ids": [
+        "H01",
+        "H07",
+        "H08"
+      ],
+      "evidence_scope": "measurement_prerequisite",
+      "limitations": "资源改变既可能消除故障也可能降低任务难度；缺失回执必须 unknown。",
+      "falsifier": "排名随资源或漏计教师成本变化时，撤回成本优势结论。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
+    }
+  ]
+}

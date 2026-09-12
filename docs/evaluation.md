@@ -13,3 +13,7 @@
 文件：`evals/scenarios.jsonl` 为历史目标场景，`evals/experiment.json` 为目标对照设计，`evals/run-record.template.json` 为新真实运行记录模板。早期九组变体与当前双向路由实验不是完全相同的实验，应分别编号、冻结协议后运行。
 
 只有独立验证、留出集与可回滚发布流程齐备后才能考虑 candidate → verified → promoted。当前晋升关闭，不运行自动模型基准或付费探索。
+
+2026-09-12 新增的 [研究实验协议](../evals/research-program.json) 将路由、effort、记忆、教师资产、judge、评测完整性、环境与新模型迁移分为 H01–H08；状态均为 specified_not_run，不与历史实验混用。样本量、非劣界限、严重错误上限和留出查询预算为 null，需在正式运行前冻结。
+
+[深度证据审查](research/evidence-review-2026-09.md) 解释各项对照的来源与限制；[持续开发流程](research/development-program.md) 给出指标分母、M3 交付与停止条件。教师成本同时报告冷启动与按真实复用次数摊销；失败、环境故障、取消和缺失回执保留。固定留出集需限制查询次数，不能在反复按其反馈优化后继续称为未见数据。
