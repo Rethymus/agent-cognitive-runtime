@@ -265,6 +265,45 @@
       "status": "specified_not_run",
       "result": null,
       "run_records": []
+    },
+    {
+      "experiment_id": "H09",
+      "question": "按需指令与单条规则的模型条件化收益",
+      "claim_ids": [
+        "C11"
+      ],
+      "arms": [
+        "legacy_0_3_2_instructions",
+        "on_demand_0_3_3_instructions",
+        "single_rule_ablation_from_legacy"
+      ],
+      "controlled_contrast": "同模型/effort、工具、记忆初态、任务预算和宿主指令；只替换明确记录的规则快照。各模型分别分析。",
+      "primary_and_safety_metrics": [
+        "acceptance_rate",
+        "serious_error_rate",
+        "total_cost_per_accepted_task",
+        "constraint_omission_rate",
+        "latency_p95"
+      ],
+      "secondary_metrics": [
+        "loaded_instruction_bytes",
+        "observable_instruction_tokens_or_null",
+        "redundant_checks",
+        "delegation_count",
+        "handoff_rework"
+      ],
+      "safeguards": "临时 home；不删除授权/预算/遗忘/候选隔离。固定完整上下文、验收和失败记录；任务簇内随机交错。程序测试不冒充模型结果。",
+      "protocol": "docs/instruction-evolution.md",
+      "rule_ids": [
+        "IR01",
+        "IR02",
+        "IR03",
+        "IR04",
+        "IR05"
+      ],
+      "status": "specified_not_run",
+      "result": null,
+      "run_records": []
     }
   ]
 }

@@ -1,5 +1,7 @@
 # 自适应委派 v0.3
 
+先判断委派是否值得：应有清晰产物、独立范围和可并行的主代理工作，且收益超过交接与审查成本。以下门控用于已经选定的子任务，不要求每个普通任务先填写路由画像。
+
 ## 分类依据
 
 读取 `policies/adaptive-routing.json` 的 feature_guidance 和 feature_values。以可定位的任务要求、代码依赖、工具观察和测试失败支持判断；模型输出的分数不代表校准概率。
@@ -10,10 +12,10 @@
 
 ## 双向路径
 
-- 强主代理：明确执行委派给 economy/xhigh，自身推进独立的架构、研究或验收工作。已有强主代理承担适合自己的决策，不重复创建同级强代理。
+- 强主代理：值得委派的明确执行使用 economy/xhigh，自身推进独立工作；短小执行可直接完成。已有强主代理承担适合自己的决策，不重复创建同级强代理。
 - 经济型主代理：复杂点交给 reasoner/high，只返回 decision_packet_v1；如有证据表明强审查仍失败，才考虑 frontier/xhigh，例外攻坚才 max。主代理仍保留任务所有权。
 - 经济型子代理遇难题：向父代理返回阻碍、失败证据和所需决策。父代理从同一预算派发同级决策代理；子代理禁止再派生。
-- 降级必须有已核验的 decision_ref、执行边界和验收条件；`checkpoint_verified` 是调用者声明，脚本不能判断引用内容的真伪。父代理承担实质核验。
+- 需要交回经济型执行时，提供已核验的 decision_ref、执行边界和验收条件；剩余工作短小或交接无收益时由当前主代理直接完成。`checkpoint_verified` 是调用者声明，脚本不能判断引用内容的真伪。
 
 当前宿主只允许在另有有用工作可并行时派生子代理。经济型主代理若完全被一个顺序难题阻塞，路由返回 needs_independent_work_or_host_handoff：保留检查点并明确宿主需要的交接，不能伪称当前主模型已切换或制造空转以绕过约束。当前模型的 effort 也不能由此脚本修改。
 
@@ -24,9 +26,9 @@
 1. 建立稳定 task_id（当前任务 ID + 用户目标标识）；同一目标的全部子任务共享它。每次模型执行轮次使用唯一 request_id。
 2. 参照 `examples/adaptive-request.json` 构造请求，plan 检查路径；信息不够先补齐证据。尽量用现有输入或确定性工具查证，不额外创建分类模型。
 3. 只有 mode=delegate 才 reserve。只有 admitted=true 才启动该轮；显式使用返回的 model、reasoning_effort 和 fork_turns，并加上有界交接说明。admitted=false/already_reserved 不得重复派发，先核对真实运行状态。
-4. 主代理继续独立工作；每个子任务限制工具、路径、外部副作用、时间、修复次数和输出。经济型子代理保持 xhigh/max，不得静默降档。
+4. 主代理继续独立工作；交接说明目标、必要输入、写入范围、外部副作用、验收和预算。需要结构化交接时读 [subagents.md](subagents.md)。经济型子代理保持 xhigh/max，不得静默降档。
 5. 对返回结果检查 scope_and_diff、acceptance_outcomes、evidence_freshness、declared_side_effects、remaining_unknowns。强主代理要核验关键断言及验收，不能把子代理的“全部通过”当证据；也不必无差别重做整个任务。返回决策要查约束、反例、依据，不能仅做措辞评价。
-6. 用 finish 写 completed/failed/cancelled、实际可观察 usage_tokens（没有则 null）与 evidence_ref；随后查看 status。终态回执不可覆盖，允许完全相同的幂等重放。
+6. 用 finish 写 completed/failed/cancelled、实际可观察 usage_tokens（没有则 null）与 evidence_ref。终态回执不可覆盖，允许完全相同的幂等重放；仅在需汇总或排查预算时另查 status。
 
 预算按新子代理推理轮次计数：spawn、followup_task 和任何会触发新模型工作的一轮消息均须独立 reserve。已在执行轮次内的纯状态查询不新增推理预算；不要通过发消息让子代理继续工作来绕过计数。新轮次沿用适用角色，调用对应的宿主工具，而不是机械地每次创建新代理。
 
@@ -42,5 +44,5 @@
 
 ## 维护与校准
 
-模型 ID/支持的 effort 放 model-registry.json；职责与档位放 subagent-policy.json；门槛、预算和维度放 adaptive-routing.json。旧模型经验不自动迁移成新模型能力保证。变更运行回归测试、生成角色并验证宿主，再做任务族配对评测。calibration 当前关闭，禁止用历史成功几次自行改阈值。
+模型 ID/支持的 effort 放 model-registry.json；职责与档位放 subagent-policy.json；门槛、预算和维度放 adaptive-routing.json。验证范围按实际变更确定，见 [maintaining-subagents.md](maintaining-subagents.md)。旧模型经验不自动迁移成新模型能力保证；calibration 当前关闭，禁止用历史成功几次自行改阈值。
 学习闭环仍只保存候选；没有独立留出评测与发布器，不能把 critique 升格为 Skill 修改。细节见 [maintaining-subagents.md](maintaining-subagents.md)。

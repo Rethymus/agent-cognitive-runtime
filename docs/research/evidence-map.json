@@ -170,6 +170,22 @@
       "falsifier": "排名随资源或漏计教师成本变化时，撤回成本优势结论。",
       "local_validation": "not_run",
       "policy_change_authorized_by_evidence": false
+    },
+    {
+      "claim_id": "C11",
+      "claim": "按任务和模型复核流程性指令，可能减少协调负担，但质量与完整成本收益需分层消融。",
+      "source_ids": [
+        50,
+        51
+      ],
+      "experiment_ids": [
+        "H09"
+      ],
+      "evidence_scope": "engineering_guidance_and_local_document_change",
+      "limitations": "本地精简只有文件变化证据；官方建议不证明跨模型收益。",
+      "falsifier": "约束遗漏、严重错误或完整成本上升，则收窄或撤回对应规则调整。",
+      "local_validation": "not_run",
+      "policy_change_authorized_by_evidence": false
     }
   ]
 }

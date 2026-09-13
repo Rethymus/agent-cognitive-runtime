@@ -1,4 +1,4 @@
-# 本地适配器操作说明 · 0.3.1
+# 本地适配器操作说明 · 0.3.3
 
 本地版是 v0.1 技术方案的可运行子集，使用独立、较小的 JSON 接口；并非宣称实现研究包全部 schema。Python 标准库 + SQLite，无包安装、API Key、网络请求、常驻进程。数据库默认在 `$CODEX_HOME/cognitive-runtime/state/memory.sqlite3`，CODEX_HOME 未设置时为 `~/.codex`。Skill 代码与记忆数据分离。
 
@@ -54,7 +54,7 @@ task.content：
 {"goal":"目标","deliverables":["产物"],"success_criteria":["可观察验收"],"constraints":"范围、授权、限制与回滚边界","phase":"act","next_action":"下一步可执行动作","budget":{"max_retries":2,"max_teacher_rounds":1,"max_usd":null}}
 ```
 
-phase 可取 contract / plan / act / verify / delivered / blocked。这是公开检查点，脚本校验字段但不控制全部状态转换，也不证明 delivered 已通过测试。具体 Classify/Retrieve 及反馈循环由 Skill 指导执行；不要宣称拥有独立状态机服务。
+phase 可取 contract / plan / act / verify / delivered / blocked。这是公开检查点，脚本校验字段但不要求任务依次经过所有阶段，也不证明 delivered 已通过验收；不要宣称拥有独立状态机服务。
 
 ## 读取、遗忘和弃用
 
@@ -79,5 +79,5 @@ forget 移除正文并级联清除派生项，仅留不含正文的墓碑 id 和
 ## 实际边界
 
 SQLite 事务保障 CAS 和幂等写入。所有操作以单一系统用户执行；拥有任意文件权限的进程仍可绕过 API 改库或改 Skill。这是防误用边界，不是对恶意宿主的安全沙箱。
-不提供签名评测、独立权限主体、后台自学习、常驻模型调度服务、自动 Skill 发布或跨机器同步。按需子代理已通过宿主工具和 subagent_router.py 接入，详见 routing.md。`promote` 和 `verify_candidate` 实际拒绝执行，不能只靠改一项开关绕过 API。
+不提供签名评测、独立权限主体、后台自学习、常驻模型调度服务、自动 Skill 发布或跨机器同步。按需子代理通过宿主工具和 adaptive_router.py 接入，详见 [adaptive-routing.md](adaptive-routing.md)。`promote` 和 `verify_candidate` 实际拒绝执行，不能只靠改一项开关绕过 API。
 原始运行输出、聊天、隐藏推理不会自动采集；内容由 Agent 最小化提交，脚本无法可靠识别自然语言中伪装的私有信息，禁止把它当成语义脱敏器。

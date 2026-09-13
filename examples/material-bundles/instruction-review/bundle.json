@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "instruction-review-2026-09",
+  "created_on": "2026-09-13",
+  "objective": "合并已授权的按需指令维护，独立准备规则消融；不改模型绑定或预算。",
+  "materials": [
+    {
+      "id": "M01",
+      "kind": "tool_doc",
+      "source_url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "catalog_source_id": 50,
+      "version": "observed-2026-09-13",
+      "reviewed_on": "2026-09-13",
+      "review_after": "2026-10-13",
+      "review_status": "reviewed",
+      "read_depth": "relevant_sections",
+      "attribution": "OpenAI",
+      "license": "引用公开论文元数据与原创研究摘要；不分发论文正文",
+      "allowed_uses": [
+        "research"
+      ],
+      "scope": [
+        "模型相关的指令与 Skill 维护"
+      ],
+      "summary": "复核流程性约束，保持必要边界；不同模型需要独立验证。",
+      "limitations": [
+        "动态产品文档，不是本仓库效果实验；API 能力不证明 Codex 宿主已接入。"
+      ],
+      "depends_on": [],
+      "artifact": null,
+      "dataset": null
+    },
+    {
+      "id": "M02",
+      "kind": "tool_doc",
+      "source_url": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra",
+      "catalog_source_id": 51,
+      "version": "observed-2026-09-13",
+      "reviewed_on": "2026-09-13",
+      "review_after": "2026-10-13",
+      "review_status": "reviewed",
+      "read_depth": "full_text",
+      "attribution": "Eric Provencher / OpenAI Developers",
+      "license": "引用公开论文元数据与原创研究摘要；不分发论文正文",
+      "allowed_uses": [
+        "research"
+      ],
+      "scope": [
+        "模型相关的指令与 Skill 维护"
+      ],
+      "summary": "复核流程性约束，保持必要边界；不同模型需要独立验证。",
+      "limitations": [
+        "实践建议，未提供本项目消融；不能将 Astra 经验当作 Luna 或未来模型结论。"
+      ],
+      "depends_on": [],
+      "artifact": null,
+      "dataset": null
+    }
+  ],
+  "changes": [
+    {
+      "id": "U01",
+      "target": "research",
+      "material_ids": [
+        "M01",
+        "M02"
+      ],
+      "claim_ids": [
+        "C11"
+      ],
+      "evaluation_ids": [
+        "H09"
+      ],
+      "hypothesis": "按需加载和有收益的交接可减少流程负担；效果待独立检验。",
+      "falsifier": "任务族质量下降、约束遗漏或完整成本上升。",
+      "model": null
+    },
+    {
+      "id": "U02",
+      "target": "skill",
+      "material_ids": [
+        "M01",
+        "M02"
+      ],
+      "claim_ids": [
+        "C11"
+      ],
+      "evaluation_ids": [
+        "H09"
+      ],
+      "hypothesis": "按需加载和有收益的交接可减少流程负担；效果待独立检验。",
+      "falsifier": "任务族质量下降、约束遗漏或完整成本上升。",
+      "model": null
+    },
+    {
+      "id": "U03",
+      "target": "evaluation",
+      "material_ids": [
+        "M01",
+        "M02"
+      ],
+      "claim_ids": [
+        "C11"
+      ],
+      "evaluation_ids": [
+        "H09"
+      ],
+      "hypothesis": "按需加载和有收益的交接可减少流程负担；效果待独立检验。",
+      "falsifier": "任务族质量下降、约束遗漏或完整成本上升。",
+      "model": null
+    }
+  ]
+}

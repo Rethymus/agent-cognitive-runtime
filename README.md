@@ -2,7 +2,7 @@
 
 **简体中文** · [English](README.en.md)
 
-> 让强模型处理关键判断，让经济型模型完成明确执行，让每次交接都有证据。
+> 按需使用记忆与子代理，让关键判断和任务交接都有证据。
 
 为 Codex 提供可迁移的记忆、任务验收与子代理分工。Python 3.11+，本地运行，运行时只使用标准库。
 
@@ -10,7 +10,7 @@
 
 长任务容易丢失已确认的约束；便宜模型遇到难题容易反复尝试；强模型又常把简单工作全部做完。仅增加一段更长的提示词，无法稳定解决这些问题。
 
-这个项目把任务约定、相关记忆、模型分工、验收和失败经验放进一套可检查的流程：复杂判断按需交给强模型，明确执行交给经济型模型，经验先作为候选保存。
+这个项目把任务约定、相关记忆、模型分工、验收和失败经验放进一套可检查的流程：复杂判断按需交给强模型，值得交接的明确执行交给经济型模型，经验先作为候选保存。当前上下文足够或交接收益不足时，直接完成任务。
 
 **当前是可运行的本地原型，尚未证明能节省固定比例的 token，或让 Luna 达到 Sol 的成功率。** Skill 改善的是组合系统的有效表现，不改变基础模型权重。
 
@@ -58,8 +58,8 @@ python -X utf8 scripts/manage.py doctor
 安装后对 Codex 说：
 
 ```text
-使用 agent-cognitive-runtime 完成这个任务。先明确验收条件；
-将独立、可验证的执行交给经济型子代理，复杂判断按需升级，最后核验结果。
+使用 agent-cognitive-runtime 完成这个任务。按需使用相关记忆；
+有明确收益时委派独立执行，复杂判断按需升级，按任务范围核验结果。
 ```
 
 首次调用若没有自动发现 Skill，可在新会话中显式使用 `$agent-cognitive-runtime`。更新时先审查仓库变更、运行测试，再重新安装；[维护说明](docs/maintenance.md)提供模型替换和回滚步骤。此项目没有自动联网更新或后台学习服务。
@@ -68,21 +68,20 @@ python -X utf8 scripts/manage.py doctor
 
 ```mermaid
 flowchart TD
-    A[用户目标] --> B[任务约定与相关记忆]
-    B --> C{证据是否足够}
-    C -->|不足| D[有界查证]
-    D --> C
-    C -->|足够| E{当前子任务}
-    E -->|明确执行| F[经济型执行]
-    E -->|复杂决策| G[强模型有界决策]
-    G --> H[核验决策与检查点]
-    H --> F
-    F --> I[主代理验收]
-    I --> J[交付与可审计资产]
-    J --> K[候选经验]
+    A[用户目标与已有上下文] --> B{是否需要补充信息}
+    B -->|是| C[按需查证或相关记忆]
+    C --> D{是否有值得委派的独立工作}
+    B -->|否| D
+    D -->|否| E[当前代理执行]
+    D -->|是| F[证据门控与预算预约]
+    F --> G[经济型执行或强模型有界决策]
+    G --> H[主代理核验返回结果]
+    H --> E
+    E --> I[按范围验收并交付]
+    I -. 可复用经验 .-> J[候选资产，晋升关闭]
 ```
 
-派发前通过共享账本预约；只有准入成功才调用子代理。子代理不递归派生，主代理核验实际产物和证据。强模型完成决策后，在已验证检查点把执行交回经济型模型。
+派发前通过共享账本预约；只有准入成功才调用子代理。子代理不递归派生，主代理核验实际产物和证据。强模型完成决策后，仅在交接仍有收益时经已验证检查点交回经济型；短小的剩余工作可直接完成。
 
 默认经济型档位为 xhigh，修复可用 max；强模型日常 medium/high，攻坚 xhigh/max。内置模型绑定是带复核日期的研究环境示例，不能直接当作跨账号能力保证。
 
@@ -144,13 +143,19 @@ python -X utf8 scripts/materials.py plan examples/material-bundles/future-model/
 
 资料生命周期进一步参考 [Model Cards](https://arxiv.org/abs/1810.03993)、[Datasheets for Datasets](https://arxiv.org/abs/1803.09010) 和 [W3C PROV](https://www.w3.org/TR/prov-overview/)。它们分别帮助记录模型适用范围、语料组成与维护、来源派生关系；已有论文仍保留在上述依据表和来源目录中。
 
+## 规则也随模型迭代
+
+0.3.3 将 Skill 精简为记忆、委派和维护三个按需入口。固定阶段是可用环节，不要求每项任务走完；授权、候选隔离、预算、核验和回滚边界继续保留。全局激活块也检测本地修改，升级前需合并冲突。
+
+[规则复核与消融设计](docs/instruction-evolution.md)记录了本轮具体决策、反证条件和 H09 对照协议；[可检查资料包](examples/material-bundles/instruction-review/bundle.json)供后续 Agent 继续更新。依据包括 [OpenAI 模型指导](https://developers.openai.com/api/docs/guides/latest-model)和 [Eric Provencher 的实践文章](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)，它们属于工程指导，不替代上面的论文证据。文件精简不等于已经证明质量或费用收益。
+
 ## 研究与开发
 
 研究从用户提供的 Fable 附件机制审查出发，结合 Agent Skills、context engineering、ReAct、Reflexion、Self-Refine、Voyager、弱强监督和模型路由研究。原附件身份未被认证，全文不随仓库分发。
 
 [研究导航](docs/research/README.md) · [9 月深度证据审查](docs/research/evidence-review-2026-09.md) · [双向路由研究](docs/research/adaptive-routing.md) · [评测设计](docs/evaluation.md)
 
-研究记录将原论文结论、适用限制和项目实测分开。新增的 [证据映射](docs/research/evidence-map.json) 与 [持续开发流程](docs/research/development-program.md) 把 10 条主张关联到 8 组待运行实验；尚不宣称 Luna+Harness 已达到 Sol 的质量或节省了多少额度。
+研究记录将原论文结论、适用限制和项目实测分开。新增的 [证据映射](docs/research/evidence-map.json) 与 [持续开发流程](docs/research/development-program.md) 把 11 条主张关联到 9 组待运行实验；尚不宣称 Luna+Harness 已达到 Sol 的质量或节省了多少额度。
 
 ```sh
 python -X utf8 -m unittest discover -s tests -v

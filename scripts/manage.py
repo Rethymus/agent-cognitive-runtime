@@ -20,6 +20,9 @@ SKILL=REPO/'skill'
 sys.path.insert(0,str(SKILL/'scripts'))
 import subagent_router as router
 
+ACTIVATION_BEGIN='<!-- ACR:BEGIN -->'
+ACTIVATION_END='<!-- ACR:END -->'
+
 def digest(data): return hashlib.sha256(data).hexdigest()
 def read(path): return path.read_bytes() if path.is_file() else None
 def atomic(path,data):
@@ -47,19 +50,27 @@ def locked(home):
     try: yield parent
     finally: lock.rmdir()
 
-def activation(home):
-    path=home/'AGENTS.md';data=read(path) or b'';s=data.decode('utf-8-sig')
-    begin='<!-- ACR:BEGIN -->';end='<!-- ACR:END -->'
-    matches=list(re.finditer(re.escape(begin)+'.*?'+re.escape(end),s,re.S))
-    if s.count(begin)!=len(matches) or s.count(end)!=len(matches) or len(matches)>1:
+def extract_activation(data):
+    """Decode AGENTS.md and return its text plus its validated ACR match."""
+    s=(data or b'').decode('utf-8-sig')
+    matches=list(re.finditer(re.escape(ACTIVATION_BEGIN)+'.*?'+re.escape(ACTIVATION_END),s,re.S))
+    if s.count(ACTIVATION_BEGIN)!=len(matches) or s.count(ACTIVATION_END)!=len(matches) or len(matches)>1:
         raise ValueError('ambiguous ACR activation markers')
-    block=f'''{begin}
-复杂、持续或可独立委派的任务，按需读取 `{(home/'skills/agent-cognitive-runtime/SKILL.md').as_posix()}`。
-遵守当前用户授权与宿主条件；路由依据证据，未知先查证。经济型子代理只用 xhigh/max，强模型日常 medium/high、攻坚 xhigh/max，读取注册表并显式传参。
-委派使用同一目标的任务预算，预约成功才启动；主代理核验范围、真实验收与副作用，决策完成后在已验证检查点交回执行。此 Skill 不切换当前主模型、不控制全局 token 上限。
-只保存公开可审计资产，不保存私有思维链；候选经验不自行晋升或改写 Skill。普通问答和单步动作直接完成。
-{end}'''
-    return ((s[:matches[0].start()]+block+s[matches[0].end():]) if matches else (s+('\n' if s and not s.endswith('\n') else '')+'\n'+block+'\n')).encode('utf8')
+    return s,matches[0] if matches else None
+
+def activation_block(data):
+    _,match=extract_activation(data)
+    return match.group(0) if match else None
+
+def activation(home):
+    path=home/'AGENTS.md';data=read(path)
+    s,match=extract_activation(data)
+    block=f'''{ACTIVATION_BEGIN}
+按需读取此 Skill，用于记忆、检查点、子代理和维护：`{(home/'skills/agent-cognitive-runtime/SKILL.md').as_posix()}`。
+仅为有独立价值的工作委派；遵循注册表中的模型、effort 与预算，并保留当前主模型。
+遵守当前用户授权与宿主规则；验证与候选经验流程按需查阅此 Skill。
+{ACTIVATION_END}'''
+    return ((s[:match.start()]+block+s[match.end():]) if match else (s+('\n' if s and not s.endswith('\n') else '')+'\n'+block+'\n')).encode('utf8')
 
 def desired(home,with_roles=False,activate=False):
     files={}
@@ -76,16 +87,38 @@ def desired(home,with_roles=False,activate=False):
 def install(home,apply=False,with_roles=False,activate=False,adopt_existing=False):
     home=Path(home).expanduser().resolve();writes=desired(home,with_roles,activate)
     parent=home/'cognitive-runtime/packages'
-    latest=parent/'latest.json';known={}
+    latest=parent/'latest.json';known={};previous=None
     if latest.is_file():
         previous=json.loads(latest.read_text(encoding='utf8'))
-        known=previous['managed_hashes']
+        known=previous.get('managed_hashes',{})
     before={rel:read(target(home,rel)) for rel in writes}
     for rel,current in before.items():
-        if rel=='AGENTS.md':continue  # Only the marked block is replaced.
+        if rel=='AGENTS.md':continue
         if current is not None and current!=writes[rel]:
             if rel not in known or digest(current)!=known[rel]:
                 if not adopt_existing:raise ValueError('unmanaged or locally modified target: '+rel+'; review before --adopt-existing')
+    if activate:
+        desired_block=activation_block(writes['AGENTS.md'])
+        current=before['AGENTS.md']
+        current_block=activation_block(current)
+        # An unchanged managed block is safe even when text outside it changed.
+        if current_block!=desired_block:
+            baseline=previous.get('activation_block_sha256') if previous else None
+            safe=False
+            if current_block is not None:
+                if baseline is not None:
+                    safe=digest(current_block.encode('utf8'))==baseline
+                else:
+                    # Receipts written before block hashes used the full file.
+                    legacy=known.get('AGENTS.md')
+                    safe=current is not None and legacy is not None and digest(current)==legacy
+            elif baseline is None:
+                # A first activation may add a block to an otherwise unmarked
+                # AGENTS.md. A legacy receipt can only authorize an exact file.
+                legacy=known.get('AGENTS.md')
+                safe=(legacy is None) or (current is not None and digest(current)==legacy)
+            if not safe and not adopt_existing:
+                raise ValueError('locally modified or missing ACR activation block: AGENTS.md; review before --adopt-existing')
     changed={rel:data for rel,data in writes.items() if data!=before[rel]}
     result={'action':'install','dry_run':not apply,'changed_files':list(changed),'with_roles':with_roles,'activate':activate,'config_toml_modified':False,'state_modified':False,'host_model_availability_verified':False}
     if not apply or not changed:return result
@@ -100,7 +133,10 @@ def install(home,apply=False,with_roles=False,activate=False,adopt_existing=Fals
             filename=str(index)+'.before' if before[rel] is not None else None
             if filename:atomic(backup/filename,before[rel])
             entries.append({'path':rel,'before_sha256':digest(before[rel]) if before[rel] is not None else None,'after_sha256':digest(data),'backup':filename})
-        record={'schema_version':'1.0','home':str(home),'source_checkout':str(REPO),'id':key,'files':entries,'managed_hashes':{**known,**{rel:digest(data) for rel,data in writes.items()}},'previous_latest':json.loads(latest.read_text(encoding='utf8')) if latest.exists() else None}
+        activation_baseline=previous.get('activation_block_sha256') if previous else None
+        if activate:
+            activation_baseline=digest(activation_block(writes['AGENTS.md']).encode('utf8'))
+        record={'schema_version':'1.0','home':str(home),'source_checkout':str(REPO),'id':key,'files':entries,'managed_hashes':{**known,**{rel:digest(data) for rel,data in writes.items()}},'activation_block_sha256':activation_baseline,'previous_latest':json.loads(latest.read_text(encoding='utf8')) if latest.exists() else None}
         atomic(backup/'receipt.json',json.dumps(record,ensure_ascii=False,indent=2).encode('utf8'))
         applied=[]
         try:

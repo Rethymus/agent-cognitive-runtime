@@ -25,7 +25,7 @@ python -X utf8 scripts/manage.py install --activate --with-roles
 python -X utf8 scripts/manage.py install --activate --with-roles --apply
 ```
 
-`--activate` 仅新增或替换全局 AGENTS.md 内的 ACR 标记块；块外用户文字保留。`--with-roles` 生成八个角色文件，但不启用未知宿主的功能开关，不修改 config.toml。宿主只接受显式 model/effort 时，按路由结果传参；不能声称命名角色已被加载。
+`--activate` 仅新增或替换全局 AGENTS.md 内的 ACR 标记块；块外用户文字保留。本地修改或删除受管块时会拒绝覆盖；审查合并后才能显式采用 `--adopt-existing`。新回执单独记录块哈希；旧回执只有整文件哈希时无法区分块内外修改，保守要求审查采用。`--with-roles` 生成八个角色文件，但不启用未知宿主的功能开关，不修改 config.toml。宿主只接受显式 model/effort 时，按路由结果传参；不能声称命名角色已被加载。
 
 默认子代理角色为 economy/xhigh，修复角色 economy/max。角色示例仅来自 2026-09-09 研究环境。其他账号、模型供应商或宿主版本需要更新绑定/适配器，不能把示例 ID 当通用 API 标识。
 

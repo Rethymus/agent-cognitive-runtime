@@ -654,5 +654,41 @@
     "checked_at": "2026-09-13",
     "access_level": "full_text_relevant_sections",
     "reproduced": false
+  },
+  {
+    "id": 50,
+    "citation": "OpenAI，Model guidance：GPT-6 Astra。",
+    "urls": [
+      "https://developers.openai.com/api/docs/guides/latest-model"
+    ],
+    "source_type": "official_model_guidance",
+    "version_read": "live page observed 2026-09-13; Astra tab",
+    "read_sections": [
+      "Prompting best practices: initiative, instruction following, delegation, testing"
+    ],
+    "checked_at": "2026-09-13",
+    "access_level": "full_text_relevant_sections",
+    "reproduced": false,
+    "limitations": "动态产品文档，不是本仓库效果实验；API 能力不证明 Codex 宿主已接入。"
+  },
+  {
+    "id": 51,
+    "citation": "Eric Provencher，2026-09-11，Rethinking skills and prompts for GPT-6 Astra。",
+    "urls": [
+      "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra"
+    ],
+    "source_type": "official_engineering_article",
+    "first_published": "2026-09-11",
+    "version_read": "live page observed 2026-09-13",
+    "read_sections": [
+      "Better skills",
+      "Up-to-date AGENTS.md",
+      "Decision boundaries",
+      "Persistence"
+    ],
+    "checked_at": "2026-09-13",
+    "access_level": "full_text",
+    "reproduced": false,
+    "limitations": "实践建议，未提供本项目消融；不能将 Astra 经验当作 Luna 或未来模型结论。"
   }
 ]

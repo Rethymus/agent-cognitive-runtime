@@ -13,7 +13,7 @@ import sys
 import time
 import uuid
 
-VERSION = "0.3.2"
+VERSION = "0.3.3"
 KINDS = {"user", "project", "episodic", "failure", "procedural", "skill_library", "evaluation", "task"}
 TTL = {"user": 180, "project": 90, "episodic": 14, "failure": 90, "procedural": 90, "skill_library": 90, "evaluation": 180, "task": 14}
 ASSET = {"problem_pattern", "decision", "evidence", "failure_mode", "heuristic", "validation_result"}

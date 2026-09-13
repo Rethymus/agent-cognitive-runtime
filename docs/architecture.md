@@ -13,6 +13,6 @@ Skill 负责按需指导，确定性脚本负责可执行约束，Codex 宿主�
 
 本地持久化状态位于 CODEX_HOME/cognitive-runtime/state：memory.sqlite3 存记忆，routing.sqlite3 存调用预约。代码更新不迁移或恢复数据库。公开项目不包含真实用户记忆、机器安装回执或原附件全文。
 
-目标状态机是 Classify → Retrieve → Contract → Plan → Act → Verify → Reflect → Evaluate → Promote。当前前半由 Skill 驱动，脚本验证 Task 检查点；末端只允许候选保存，独立 Evaluate/Promote 服务尚未实现。不能将概念图描述成后台调度器。
+目标状态机是 Classify → Retrieve → Contract → Plan → Act → Verify → Reflect → Evaluate → Promote。这些是按需选择的环节，当前 Skill 不要求依次执行；脚本验证 Task 检查点；末端只允许候选保存，独立 Evaluate/Promote 服务尚未实现。不能将概念图描述成后台调度器。
 
 完整目标设计见 [历史技术方案](research/foundations.md)，其 schema 和目标发布协议存放在 design；这些文件用于后续实现，不安装到每次模型上下文，也不等于本地 CLI。
