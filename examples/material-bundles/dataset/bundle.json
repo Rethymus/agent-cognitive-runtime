@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "synthetic-corpus-intake",
+  "created_on": "2026-09-13",
+  "objective": "演示内容指纹清单的校验；没有真实语料或模型结果。",
+  "materials": [
+    {
+      "id": "M01",
+      "kind": "dataset",
+      "source_url": "https://github.com/Rethymus/agent-cognitive-runtime",
+      "catalog_source_id": null,
+      "version": "example-v1",
+      "reviewed_on": "2026-09-13",
+      "review_after": "2026-12-13",
+      "review_status": "reviewed",
+      "read_depth": "full_text",
+      "attribution": "ACR 原创格式示例",
+      "license": "MIT",
+      "allowed_uses": [
+        "research",
+        "evaluation",
+        "distribution"
+      ],
+      "scope": [
+        "结构演示"
+      ],
+      "summary": "两个原创虚构样本的指纹清单，不能作为模型基准。",
+      "limitations": [
+        "没有实际任务、可信标签或评测结果。"
+      ],
+      "depends_on": [],
+      "artifact": {
+        "path": "manifest.json",
+        "sha256": "10e3cd4b6239fa666cf2508fd4e79dd9d558a01393a0ed7aeaaf5d3b094bfbdf"
+      },
+      "dataset": {
+        "split": "partitioned",
+        "record_count": 2,
+        "label_origin": "unknown",
+        "overlap_checked": false
+      }
+    }
+  ],
+  "changes": [
+    {
+      "id": "U01",
+      "target": "evaluation",
+      "material_ids": [
+        "M01"
+      ],
+      "claim_ids": [
+        "C05"
+      ],
+      "evaluation_ids": [
+        "H03"
+      ],
+      "hypothesis": "填写该资料将改变的具体工程判断。",
+      "falsifier": "填写可推翻此判断的验证结果。",
+      "model": null
+    }
+  ]
+}

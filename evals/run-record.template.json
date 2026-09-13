@@ -6,7 +6,7 @@
   "split": null,
   "task_input_hash": null,
   "acceptance_contract_hash": null,
-  "harness_version": "0.3.1",
+  "harness_version": "0.3.2",
   "policy_hash": null,
   "registry_hash": null,
   "decision_features": {},

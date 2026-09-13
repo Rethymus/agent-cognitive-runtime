@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "future-model-intake",
+  "created_on": "2026-09-13",
+  "objective": "演示未来模型材料导入，所有模型标识均为占位。",
+  "materials": [
+    {
+      "id": "M01",
+      "kind": "model_card",
+      "source_url": "https://example.invalid/model-card",
+      "catalog_source_id": null,
+      "version": "unknown",
+      "reviewed_on": null,
+      "review_after": null,
+      "review_status": "candidate",
+      "read_depth": "metadata",
+      "attribution": "unknown",
+      "license": "unknown",
+      "allowed_uses": [],
+      "scope": [
+        "unspecified"
+      ],
+      "summary": "填写公开可审计摘要；原始材料保持数据身份。",
+      "limitations": [
+        "尚未审查"
+      ],
+      "depends_on": [],
+      "artifact": null,
+      "dataset": null
+    }
+  ],
+  "changes": [
+    {
+      "id": "U01",
+      "target": "model_binding",
+      "material_ids": [
+        "M01"
+      ],
+      "claim_ids": [
+        "C03",
+        "C10"
+      ],
+      "evaluation_ids": [
+        "H08"
+      ],
+      "hypothesis": "填写该资料将改变的具体工程判断。",
+      "falsifier": "填写可推翻此判断的验证结果。",
+      "model": {
+        "slot": "economy",
+        "model_id": "future-economy-model",
+        "provider": "unverified-provider",
+        "adapter": "codex",
+        "supported_efforts": [
+          "xhigh",
+          "max"
+        ],
+        "selected_effort": "xhigh",
+        "capabilities": [
+          "tools",
+          "bounded_execution"
+        ],
+        "host_verified": false,
+        "host_evidence_id": null
+      }
+    }
+  ]
+}

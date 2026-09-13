@@ -1,0 +1,443 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "1.0"
+      ]
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date",
+      "maxLength": 10
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/material"
+      },
+      "minItems": 1,
+      "maxItems": 100,
+      "uniqueItems": true
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/change"
+      },
+      "minItems": 1,
+      "maxItems": 100,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "created_on",
+    "objective",
+    "materials",
+    "changes"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Rethymus/agent-cognitive-runtime/schemas/material-bundle.schema.json",
+  "title": "ACR material review bundle — declarations are not verified facts",
+  "$defs": {
+    "material": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "paper",
+            "model_card",
+            "dataset",
+            "tool_doc",
+            "example",
+            "evaluation",
+            "host_observation"
+          ]
+        },
+        "source_url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "catalog_source_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "reviewed_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "maxLength": 10
+        },
+        "review_after": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "maxLength": 10
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "reviewed",
+            "deprecated",
+            "retracted"
+          ]
+        },
+        "read_depth": {
+          "type": "string",
+          "enum": [
+            "metadata",
+            "relevant_sections",
+            "full_text"
+          ]
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "allowed_uses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "research",
+              "evaluation",
+              "training",
+              "distribution"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "minItems": 1,
+          "maxItems": 30,
+          "uniqueItems": true
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "minItems": 0,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "artifact": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "dataset": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "split": {
+              "type": "string",
+              "enum": [
+                "train",
+                "calibration",
+                "holdout",
+                "partitioned",
+                "mixed",
+                "unknown"
+              ]
+            },
+            "record_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "label_origin": {
+              "type": "string",
+              "enum": [
+                "human",
+                "model",
+                "mixed",
+                "unknown"
+              ]
+            },
+            "overlap_checked": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "split",
+            "record_count",
+            "label_origin",
+            "overlap_checked"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "source_url",
+        "catalog_source_id",
+        "version",
+        "reviewed_on",
+        "review_after",
+        "review_status",
+        "read_depth",
+        "attribution",
+        "license",
+        "allowed_uses",
+        "scope",
+        "summary",
+        "limitations",
+        "depends_on",
+        "artifact",
+        "dataset"
+      ],
+      "additionalProperties": false
+    },
+    "change": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "research",
+            "model_binding",
+            "routing",
+            "memory",
+            "skill",
+            "evaluation"
+          ]
+        },
+        "material_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "minItems": 1,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "claim_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "minItems": 0,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "evaluation_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "minItems": 0,
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "hypothesis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "falsifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "model": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "slot": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "model_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "adapter": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "supported_efforts": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "minItems": 1,
+              "maxItems": 20,
+              "uniqueItems": true
+            },
+            "selected_effort": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "capabilities": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 1,
+              "maxItems": 50,
+              "uniqueItems": true
+            },
+            "host_verified": {
+              "type": "boolean"
+            },
+            "host_evidence_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$",
+              "maxLength": 80
+            }
+          },
+          "required": [
+            "slot",
+            "model_id",
+            "provider",
+            "adapter",
+            "supported_efforts",
+            "selected_effort",
+            "capabilities",
+            "host_verified",
+            "host_evidence_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "material_ids",
+        "claim_ids",
+        "evaluation_ids",
+        "hypothesis",
+        "falsifier",
+        "model"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

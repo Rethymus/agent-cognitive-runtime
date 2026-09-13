@@ -108,6 +108,42 @@ User / Project / Episodic / Failure / Procedural / Skill Library / Evaluation �
 
 数据库、安装备份与真实运行回执保存在本机状态目录，更新或回滚代码不恢复已遗忘的内容。不同记忆用途的治理策略独立配置，不能改变宿主权限。[记忆机制](docs/memory.md) · [数据与信任边界](docs/security.md)
 
+## 论文与研究依据
+
+下表把论文或研究报告提供的机制线索，与本项目可迁移的设计方向及边界并列。表中内容是来源报告或设计推断，不是本项目实测；实现能力、成本与模型质量必须通过本仓库实验验证。
+
+| 研究方向 | 直接论文／研究链接 | 项目迁移与边界 |
+|---|---|---|
+| ReAct：推理与行动交错 | [ReAct](https://arxiv.org/abs/2210.03629) | 启发“推理—工具—观察”的工作循环；当前代码只验证协议与工具回执，不宣称论文效果。 |
+| Reflexion：利用反馈形成可复用反思 | [Reflexion](https://arxiv.org/abs/2303.11366) | 启发把失败回执和反思保存为候选证据；自动晋升仍关闭，需独立验收。 |
+| Self-Refine：反馈驱动的迭代改写 | [Self-Refine](https://arxiv.org/abs/2303.17651) | 支持把“生成—评审—修订”拆成可验收步骤；自评不等于正确，需确定性测试或校准评审。 |
+| Voyager：技能库与课程式积累 | [Voyager](https://arxiv.org/abs/2305.16291) | 启发 Skill Library 和程序性资产；迁移到 Codex 工具与项目需任务分离、负对照。 |
+| 程序性记忆与工作流记忆 | [Agent Workflow Memory](https://arxiv.org/abs/2409.07429) · [Managing Procedural Memory](https://arxiv.org/html/2606.23127v1) | 以 workflow、subtask、function 等粒度组织经验；作用域、版本和不适用时拒绝复用仍需项目验证。 |
+| 弱强监督（weak-to-strong） | [Weak-to-Strong Generalization](https://arxiv.org/abs/2312.09390) | 研究弱监督下强学习者的训练；与本项目“强教师指导经济型执行”的方向不同，不作为 Skill 更新模型权重的证据。 |
+| Test-time compute 与额外推理 | [Scaling LLM Test-Time Compute](https://arxiv.org/abs/2408.03314) · [Inverse Scaling](https://alignment.anthropic.com/2025/inverse-scaling/) · [When More Thinking Hurts](https://arxiv.org/abs/2604.10739) | 支持把模型与 effort 分开配对、把路由成本计入；论文任务与模型边界不能换算为 Codex effort 或节省比例。 |
+| RouteLLM：基于偏好数据的模型路由 | [RouteLLM](https://arxiv.org/abs/2406.18665) | 启发模型选择的评测对照；当前路由仍是规则与证据门控，不宣称偏好路由收益。 |
+| EvoAgentBench：能力迁移与自我演化评测 | [EvoAgentBench](https://arxiv.org/html/2607.05202v1) | 支持在同类新实例、工具变化和负对照中测试 Skill 迁移；Anchor 或能力标签不是部署路由证明。 |
+| AMD（Agent Memory Distillation） | [Agent Memory Distillation](https://arxiv.org/html/2608.07169v1) | 启发教师工作流、子任务、函数级资产；静态离线记忆和有限工具任务不足以证明本项目在线效果。 |
+| MemGym 与 StreamMemBench：长程和流式记忆 | [MemGym](https://arxiv.org/html/2605.20833v1) · [StreamMemBench](https://arxiv.org/html/2606.14571v2) | 将记忆评测拆为保留、首次使用、反馈吸收和后续复用；合成任务与个人流设置不能直接外推代码任务。 |
+| MemSyco-Bench：记忆迎合与误用 | [MemSyco-Bench](https://arxiv.org/html/2607.01071v2) | 要测相关但错误、过期或跨项目记忆诱发的错误；合成对话不提供真实发生率。 |
+| 评估器可靠性与自我纠错 | [LLMs Cannot Self-Correct Reasoning](https://arxiv.org/abs/2310.01798) · [Key Condition Verification](https://arxiv.org/abs/2405.14092) · [Demystifying evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [LLM-as-a-Judge](https://arxiv.org/html/2609.02246v1) · [Self-Preference Evaluations](https://arxiv.org/html/2601.22548v4) | 将 judge 当作待校准证据，确定性门槛优先；来源报告不证明本项目评估器已经可靠。 |
+| 评测完整性、奖励篡改与环境噪声 | [Infrastructure noise](https://www.anthropic.com/engineering/infrastructure-noise) · [Eval awareness](https://www.anthropic.com/engineering/eval-awareness-browsecomp) · [Hack-Verifiable Environments](https://arxiv.org/html/2605.20744v1) | 隔离答案、评分器和留出集并记录环境与成本；现有本地实现尚未形成独立执行边界。 |
+
+规范与工程文档（不是论文）：[Agent Skills Specification](https://agentskills.io/specification) · [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)。完整来源、读取范围与局限见 [sources.json](docs/research/sources.json)，主张与实验的证据映射见 [evidence-map.json](docs/research/evidence-map.json)。
+
+## 根据新模型与资料继续迭代
+
+提供新的模型卡、论文、工具文档、语料、执行示例或评测记录后，维护 Agent 可使用 [资料迭代入口](docs/material-evolution.md) 建立版本化资料包。工具已经支持结构与来源引用检查、证据缺口提示、候选文件与基线哈希、包内派生影响分析，以及语料跨划分的重复指纹／分组检测。
+
+```sh
+python -X utf8 scripts/materials.py plan examples/material-bundles/teacher-assets/bundle.json
+python -X utf8 scripts/materials.py plan examples/material-bundles/future-model/bundle.json
+```
+
+第一份示例演示教师资产实验准备，第二份明确保留新模型的待验证项。工具不执行材料中的指令、不自动改配置，也不把元数据完整当作模型能力证明。[字段 schema](schemas/material-bundle.schema.json) · [完整操作与给 Agent 的更新指令](docs/material-evolution.md)
+
+资料生命周期进一步参考 [Model Cards](https://arxiv.org/abs/1810.03993)、[Datasheets for Datasets](https://arxiv.org/abs/1803.09010) 和 [W3C PROV](https://www.w3.org/TR/prov-overview/)。它们分别帮助记录模型适用范围、语料组成与维护、来源派生关系；已有论文仍保留在上述依据表和来源目录中。
+
 ## 研究与开发
 
 研究从用户提供的 Fable 附件机制审查出发，结合 Agent Skills、context engineering、ReAct、Reflexion、Self-Refine、Voyager、弱强监督和模型路由研究。原附件身份未被认证，全文不随仓库分发。
@@ -127,7 +163,8 @@ python -X utf8 scripts/check_repository.py
 
 ```text
 skill/              可安装的 Skill、内核、策略、接口示例
-scripts/            安装、诊断、回滚与仓库检查
+scripts/            安装、诊断、回滚、资料迭代与仓库检查
+schemas/            已实现资料包与语料清单的字段契约
 tests/              记忆、路由、预算和安装测试
 docs/               安装、架构、协议、维护与故障排查
   research/         研究依据、附件迁移记录与证据审查

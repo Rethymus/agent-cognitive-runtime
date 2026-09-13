@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "examples": [
+    {
+      "example_id": "train01",
+      "content_sha256": "d98d84cb73ed748cba0dfe82eec4e9dd43e389edc727d15beac8ee27485ee77a",
+      "group_id": "family_a",
+      "split": "train"
+    },
+    {
+      "example_id": "holdout01",
+      "content_sha256": "ed2ba046f493dd5edfecf102c791efcf76287c1b40d44af7971006c9c70b61c1",
+      "group_id": "family_b",
+      "split": "holdout"
+    }
+  ]
+}

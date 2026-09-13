@@ -596,5 +596,63 @@
     "checked_at": "2026-09-12",
     "reproduced": false,
     "limitations": "静态离线记忆、有限工具任务；主实验与任务分离附录不能混用；重复与分离验证只用一个学生。"
+  },
+  {
+    "id": 47,
+    "citation": "Mitchell et al.，[Model Cards for Model Reporting](https://arxiv.org/abs/1810.03993)。FAT* 2019；本轮读取 arXiv v2。",
+    "urls": [
+      "https://arxiv.org/abs/1810.03993",
+      "https://arxiv.org/html/1810.03993v2"
+    ],
+    "first_published": "2018-10-05",
+    "version_read": "v2",
+    "version_date": "2019-01-14",
+    "source_type": "conference_paper_arxiv_version",
+    "read_sections": [
+      "摘要",
+      "§4 模型版本、用途、评测数据",
+      "§6 讨论"
+    ],
+    "limitations": "报告框架而非模型能力提升实验；模型卡准确性依赖编写者。",
+    "checked_at": "2026-09-13",
+    "access_level": "full_text_relevant_sections",
+    "reproduced": false
+  },
+  {
+    "id": 48,
+    "citation": "Gebru et al.，[Datasheets for Datasets](https://arxiv.org/abs/1803.09010)。CACM 2021；本轮读取 arXiv v8。",
+    "urls": [
+      "https://arxiv.org/abs/1803.09010",
+      "https://arxiv.org/html/1803.09010v8"
+    ],
+    "first_published": "2018-03-23",
+    "version_read": "v8",
+    "version_date": "2021-12-01",
+    "source_type": "journal_paper_arxiv_version",
+    "read_sections": [
+      "摘要",
+      "§3 数据生命周期与用途",
+      "§3.7 维护"
+    ],
+    "limitations": "文档与流程框架；不自动验证标签、许可、语义重叠或模型效果。",
+    "checked_at": "2026-09-13",
+    "access_level": "full_text_relevant_sections",
+    "reproduced": false
+  },
+  {
+    "id": 49,
+    "citation": "W3C，[PROV-Overview](https://www.w3.org/TR/prov-overview/)，来源、派生关系与版本的标准概览。",
+    "urls": [
+      "https://www.w3.org/TR/prov-overview/"
+    ],
+    "source_type": "standards_overview",
+    "read_sections": [
+      "设计动机与来源框架需求",
+      "PROV 数据模型及文档组织"
+    ],
+    "limitations": "本项目借鉴概念，未实现 PROV 全部序列化、语义或符合性校验。",
+    "checked_at": "2026-09-13",
+    "access_level": "full_text_relevant_sections",
+    "reproduced": false
   }
 ]

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "teacher-assets-pilot",
+  "created_on": "2026-09-13",
+  "objective": "评估新教师资产在分离工具任务上的迁移，不更改线上模型。",
+  "materials": [
+    {
+      "id": "M01",
+      "kind": "paper",
+      "source_url": "https://arxiv.org/abs/2608.07169",
+      "catalog_source_id": 46,
+      "version": "arxiv-v1",
+      "reviewed_on": "2026-09-12",
+      "review_after": "2026-12-12",
+      "review_status": "reviewed",
+      "read_depth": "relevant_sections",
+      "attribution": "Taeil Kim; Kangsan Kim; Sung Ju Hwang",
+      "license": "引用公开论文元数据与原创研究摘要；不分发论文正文",
+      "allowed_uses": [
+        "research"
+      ],
+      "scope": [
+        "工具任务中的分层教师资产"
+      ],
+      "summary": "研究 Workflow/Subtask/Function 表示能否帮助经济型代理使用教师经验。",
+      "limitations": [
+        "论文设置不等于 Codex 实测；教师准备成本需另计。"
+      ],
+      "depends_on": [],
+      "artifact": null,
+      "dataset": null
+    }
+  ],
+  "changes": [
+    {
+      "id": "U01",
+      "target": "evaluation",
+      "material_ids": [
+        "M01"
+      ],
+      "claim_ids": [
+        "C03",
+        "C04"
+      ],
+      "evaluation_ids": [
+        "H04"
+      ],
+      "hypothesis": "同一教师材料下，具体子任务资产在新任务中比抽象建议更可执行。",
+      "falsifier": "分离测试无增益或负对照发生过度迁移。",
+      "model": null
+    }
+  ]
+}

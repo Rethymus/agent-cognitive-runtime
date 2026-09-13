@@ -53,6 +53,40 @@ User, Project, Episodic, Failure, Procedural, Skill Library and Evaluation memor
 
 Autonomous candidate promotion and publication remain disabled. Teacher critique is evidence to evaluate, not authority to rewrite a Skill.
 
+## Papers and research foundations
+
+The table pairs mechanisms reported in papers or research reports with a possible project transfer and its boundary. These are source findings or design inferences, not measurements of this project; implementation behavior, cost and model quality require repository experiments.
+
+| Research direction | Direct paper / research link | Project transfer and boundary |
+|---|---|---|
+| ReAct: interleaved reasoning and action | [ReAct](https://arxiv.org/abs/2210.03629) | Informs a reasoning–tool–observation loop; the current code verifies protocol and tool receipts, not the paper’s result. |
+| Reflexion: reusable reflection from feedback | [Reflexion](https://arxiv.org/abs/2303.11366) | Informs storing failure receipts and reflections as candidate evidence; automatic promotion remains disabled and needs independent acceptance. |
+| Self-Refine: feedback driven iterative revision | [Self-Refine](https://arxiv.org/abs/2303.17651) | Supports separating generation, review and revision into checkable steps; self review is not correctness, so use deterministic tests or calibrated review. |
+| Voyager: skill library and curriculum style accumulation | [Voyager](https://arxiv.org/abs/2305.16291) | Informs the Skill Library and procedural assets; transfer to Codex tools and projects requires task separation and negative controls. |
+| Procedural and workflow memory | [Agent Workflow Memory](https://arxiv.org/abs/2409.07429) · [Managing Procedural Memory](https://arxiv.org/html/2606.23127v1) | Organize experience at workflow, subtask and function granularity; scope, versioning and refusal when inapplicable still require project validation. |
+| Weak-to-strong supervision | [Weak-to-Strong Generalization](https://arxiv.org/abs/2312.09390) | Studies training a strong learner under weak supervision; this differs from strong-teacher guidance of an economy worker and does not establish weight updates through a Skill. |
+| Test-time compute and additional reasoning | [Scaling LLM Test-Time Compute](https://arxiv.org/abs/2408.03314) · [Inverse Scaling](https://alignment.anthropic.com/2025/inverse-scaling/) · [When More Thinking Hurts](https://arxiv.org/abs/2604.10739) | Supports pairing model and effort separately and counting routing cost; paper task and model boundaries cannot be converted into Codex effort or savings. |
+| RouteLLM: preference data based model routing | [RouteLLM](https://arxiv.org/abs/2406.18665) | Informs model selection comparisons; the current router remains rule and evidence gated, with no claimed preference routing benefit. |
+| EvoAgentBench: ability transfer and agent self evolution | [EvoAgentBench](https://arxiv.org/html/2607.05202v1) | Supports testing Skill transfer on new instances, tool changes and negative controls; an Anchor or ability label is not deployment routing evidence. |
+| AMD (Agent Memory Distillation) | [Agent Memory Distillation](https://arxiv.org/html/2608.07169v1) | Informs teacher workflow, subtask and function assets; static offline memory and limited tool tasks do not establish this project’s online effect. |
+| MemGym and StreamMemBench: long horizon and streaming memory | [MemGym](https://arxiv.org/html/2605.20833v1) · [StreamMemBench](https://arxiv.org/html/2606.14571v2) | Separate retention, first use, feedback absorption and later reuse; synthetic tasks and personal streams do not directly generalize to code tasks. |
+| MemSyco-Bench: sycophancy and memory misuse | [MemSyco-Bench](https://arxiv.org/html/2607.01071v2) | Test whether relevant but wrong, stale or cross project memories induce errors; synthetic dialogues do not provide real world incidence. |
+| Evaluator reliability and self correction | [LLMs Cannot Self-Correct Reasoning](https://arxiv.org/abs/2310.01798) · [Key Condition Verification](https://arxiv.org/abs/2405.14092) · [Demystifying evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [LLM-as-a-Judge](https://arxiv.org/html/2609.02246v1) · [Self-Preference Evaluations](https://arxiv.org/html/2601.22548v4) | Treat a judge as evidence requiring calibration and keep deterministic gates first; the reports do not show that this project’s evaluator is reliable. |
+| Evaluation integrity, reward hacking and infrastructure noise | [Infrastructure noise](https://www.anthropic.com/engineering/infrastructure-noise) · [Eval awareness](https://www.anthropic.com/engineering/eval-awareness-browsecomp) · [Hack-Verifiable Environments](https://arxiv.org/html/2605.20744v1) | Isolate answers, graders and holdout sets while recording environment and cost; the local implementation does not yet provide an independent execution boundary. |
+
+Normative and engineering documents (not papers): [Agent Skills Specification](https://agentskills.io/specification) · [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). The complete source list, reading scope and limitations are in [sources.json](docs/research/sources.json); claims and experiments map directly in [evidence-map.json](docs/research/evidence-map.json).
+
+## Evolve from new models and materials
+
+Use the [material-driven maintenance guide](docs/material-evolution.md) to turn model cards, papers, tool documentation, datasets, examples and evaluation records into versioned review bundles. `scripts/materials.py` implements `init`, `check`, `plan` and `impact`: references, snapshot hashes, evidence gaps, proposed file baselines, within-bundle dependency impact and cross-split fingerprint/group checks. It does not execute source instructions, change model bindings or promote candidates.
+
+```sh
+python -X utf8 scripts/materials.py plan examples/material-bundles/teacher-assets/bundle.json
+python -X utf8 scripts/materials.py plan examples/material-bundles/future-model/bundle.json
+```
+
+The future-model example deliberately reports missing evidence. See the [bundle schema](schemas/material-bundle.schema.json), [Model Cards](https://arxiv.org/abs/1810.03993), [Datasheets for Datasets](https://arxiv.org/abs/1803.09010) and [PROV overview](https://www.w3.org/TR/prov-overview/). Documentation and byte-level validation do not establish model quality or permission to publish.
+
 ## Development
 
 ```sh

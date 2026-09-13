@@ -2,6 +2,8 @@
 
 先读 VERSION、README、[实现状态](implementation-status.md)和目标变更。不要把历史设计或测试数当成当前产品承诺。
 
+从新模型资料、论文、语料或工具示例开始的维护，先走 [资料驱动迭代入口](material-evolution.md)。用资料包关联来源、主张、实验和候选文件，检查缺口后推进已授权的工作副本修改；材料检查不替代真实评测。论文正文可保持外部链接，README 的直接论文依据和来源记录应保留。
+
 1. 读取当前注册表、角色与自适应配置，核对宿主官方信息与实际模型目录。
 2. 模型替换主要修改 skill/policies/model-registry.json；职责和 effort 修改 subagent-policy.json；预算/特征修改 adaptive-routing.json。新供应商需要新的宿主适配器，不能只改字符串。
 3. 模型复核日期只能在事实核验后更新。模型替换不自动继承旧模型的能力假设和路由阈值。
